@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<style>
+			html,
+			body {
+				height: 100%;
+				margin: 0px;
+				padding: 0px;
+				overflow: hidden;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+			}
+			/*头部navbar*/
+			.mui-bar{
+				background-color: #2D3642;
+			}
+			
+			.mui-scroll-wrapper{
+				top: 45px;
+				bottom: 50px;
+			}
+			
+			.mui-bar .mui-pull-left{
+				color: white;
+			}
+	    	
+	    	.mui-bar .my-title{
+	    		color: white;
+	    	}
+	    	
+	    	.mui-bar-nav {
+			    -webkit-box-shadow: 0 1px 10px #777474;
+			    box-shadow: 0 1px 10px #777474;
+			}
+			
+			footer {
+				position: fixed;
+				width: 100%;
+				height: 50px;
+				min-height: 50px;
+				border-top: solid 1px #bbb;
+				left: 0px;
+				bottom: 0px;
+				overflow: hidden;
+				padding: 0px 50px;
+				background-color: #fafafa;
+			}
+			.footer-left {
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				left: 0px;
+				bottom: 0px;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 100%;
+				padding: 12px 4px;
+			}
+			.footer-right {
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				right: 0px;
+				bottom: 0px;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 100%;
+				padding: 10px 5px;
+				display: inline-block;
+			}
+			.footer-center {
+				height: 100%;
+				padding: 5px 0px;
+			}
+			.footer-center [class*=input] {
+				width: 100%;
+				height: 100%;
+				border-radius: 5px;
+			}
+			.footer-center .input-text {
+				background: #fff;
+				border: solid 1px #ddd;
+				padding: 10px !important;
+				font-size: 16px !important;
+				line-height: 18px !important;
+				font-family: verdana !important;
+				overflow: hidden;
+			}
+			.footer-center .input-sound {
+				background-color: #eee;
+			}
+			.mui-bar-nav~.mui-content {
+				height: 100%;
+				padding: 50px 0px 50px 0px;
+				overflow: auto;
+				background-color: #eaeaea;
+			}
+			#msg-list {
+				height: 100%;
+				overflow: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+			.msg-item {
+				padding: 8px;
+				clear: both;
+			}
+			.msg-item .mui-item-clear {
+				clear: both;
+			}
+
+			
+			.msg-item .msg-user-img{
+				width: 38px;
+				height: 38px;
+				display: inline-block;
+				border-radius: 3px;
+				vertical-align: top;
+				text-align: center;
+				float: left;
+				color: #ddd;
+			}
+			
+			.msg-item .msg-content {
+				display: inline-block;
+				border-radius: 5px;
+				border: solid 1px #d3d3d3;
+				background-color: #FFFFFF;
+				color: #333;
+				padding: 8px;
+				vertical-align: top;
+				font-size: 15px;
+				position: relative;
+				margin: 0px 10px;
+				max-width: 75%;
+				min-width: 35px;
+				float: left;
+			}
+			.msg-item .msg-content .msg-content-inner {
+				overflow-x: hidden;
+				word-break: break-word;
+			}
+			.msg-item .msg-content .msg-content-arrow {
+				position: absolute;
+				border: solid 1px #d3d3d3;
+				border-right: none;
+				border-top: none;
+				background-color: #FFFFFF;
+				width: 10px;
+				height: 10px;
+				left: -5px;
+				top: 12px;
+				-webkit-transform: rotateZ(45deg);
+				transform: rotateZ(45deg);
+			}
+			.msg-item-self .msg-user,
+			.msg-item-self .msg-content {
+				float: right;
+			}
+			.msg-item-self .msg-content .msg-content-arrow {
+				left: auto;
+				right: -5px;
+				-webkit-transform: rotateZ(225deg);
+				transform: rotateZ(225deg);
+			}
+			.msg-item-self .msg-content,
+			.msg-item-self .msg-content .msg-content-arrow {
+				background-color: #4CD964;
+				color: black;
+				border-color: #2AC845;
+			}
+			footer .mui-icon {
+				color: #000;
+			}
+			footer .mui-icon:active {
+				color: #007AFF !important;
+			}
+			
+			footer .mui-icon-paperplane {
+				/*-webkit-transform: rotateZ(45deg);
+				transform: rotateZ(45deg);*/
+				
+				font-size: 30px;
+				padding-top: 3px;
+				word-break: keep-all;
+				line-height: 100%;
+			}
+		
+			#h {
+				background: #fff;
+				border: solid 1px #ddd;
+				padding: 10px !important;
+				font-size: 16px !important;
+				font-family: verdana !important;
+				line-height: 18px !important;
+				overflow: visible;
+				position: absolute;
+				left: -1000px;
+				right: 0px;
+				word-break: break-all;
+				word-wrap: break-word;
+			}
+			
+			
+		</style>
+	</head>
+
+	<body contextmenu="return false;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title my-title"></h1>
+		</header>
+		<pre id='h'></pre>
+		<script id='msg-template-self' type="text/template">
+				<div class="msg-item  msg-item-self" msg-type='<%=(type)%>' msg-content='<%=(content)%>'>
+					<img class="msg-user msg-user-img" src="<%=(photoUrl)%>" alt="">
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							<% if(type=='text' ) { %>
+								<%=( content|| '&nbsp;&nbsp;') %>
+							<% } else if(type=='image' ) { %>
+								<img class="msg-content-image" src="<%=(content)%>" style="max-width: 100px;" />
+							<% } else if(type=='sound' ) { %>
+								<span class="mui-icon mui-icon-mic" style="font-size: 18px;font-weight: bold;"></span>
+								<span class="play-state">点击播放</span>
+							<% } %>
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+				</div>
+			
+		</script>
+		<script id='msg-template-target' type="text/template">
+				<div class="msg-item" msg-type='<%=(type)%>' msg-content='<%=(content)%>'>
+					<img class="msg-user-img" src="<%=(photoUrl)%>" alt="" />
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							<% if(type=='text' ) { %>
+								<%=( content|| '&nbsp;&nbsp;') %>
+							<% } else if(type=='image' ) { %>
+								<img class="msg-content-image" src="<%=(content)%>" style="max-width: 100px;" />
+							<% } else if(type=='sound' ) { %>
+								<span class="mui-icon mui-icon-mic" style="font-size: 18px;font-weight: bold;"></span>
+								<span class="play-state">点击播放</span>
+							<% } %>
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+				</div>
+		</script>
+		<div class="mui-content">
+			<!--<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">-->
+					<div id='msg-list'>
+						<!--<div class="msg-item " msg-type="text" msg-content="Hi，我是 MUI 小管家！">
+							<img class="msg-user-img" src="../images/lpc.jpg" alt="">
+							<div class="msg-content">
+								<div class="msg-content-inner" >
+										hlsdfjkhsjkhlsdfjkhljdfljkhlsjhojnsdflmnbjrthlnlasdfbsjifljhnoeris
+								</div>
+								<div class="msg-content-arrow"></div>
+							</div>
+							<div class="mui-item-clear"></div>
+						</div>
+						<div class="msg-item  msg-item-self" msg-type="text" msg-content="538">
+							<img class="msg-user msg-user-img" src="../images/head1.png" alt="">
+							<div class="msg-content">
+								<div class="msg-content-inner">
+										妈的智障
+								</div>
+								<div class="msg-content-arrow"></div>
+							</div>
+							<div class="mui-item-clear"></div>
+						</div>
+						<div class="msg-item " msg-type="text" msg-content="Hi，我是 MUI 小管家！">
+							<img class="msg-user-img" src="../images/lpc.jpg" alt="">
+							<div class="msg-content">
+								<div class="msg-content-inner">
+										hlsdfjkhsjkhlsdfjkhljdfljkhlsjhojnsdflmnbjrthlnlasdfbsjifljhnoeris
+								</div>
+								<div class="msg-content-arrow"></div>
+							</div>
+							<div class="mui-item-clear"></div>
+						</div>
+						<div class="msg-item  msg-item-self" msg-type="text" msg-content="538">
+							<img class="msg-user msg-user-img" src="../images/head1.png" alt="">
+							<div class="msg-content">
+								<div class="msg-content-inner">
+										妈的智障
+								</div>
+								<div class="msg-content-arrow"></div>
+							</div>
+							<div class="mui-item-clear"></div>
+						</div>
+						<div class="msg-item " msg-type="text" msg-content="Hi，我是 MUI 小管家！">
+							<img class="msg-user-img" src="../images/lpc.jpg" alt="">
+							<div class="msg-content">
+								<div class="msg-content-inner">
+										hlsdfjkhsjkhlsdfjkhljdfljkhlsjhojnsdflmnbjrthlnlasdfbsjifljhnoeris
+								</div>
+								<div class="msg-content-arrow"></div>
+							</div>
+							<div class="mui-item-clear"></div>
+						</div>
+						<div class="msg-item  msg-item-self" msg-type="text" msg-content="538">
+							<img class="msg-user msg-user-img" src="../images/head1.png" alt="">
+							<div class="msg-content">
+								<div class="msg-content-inner">
+										妈的智障
+								</div>
+								<div class="msg-content-arrow"></div>
+							</div>
+							<div class="mui-item-clear"></div>
+						</div>
+						<div class="msg-item " msg-type="text" msg-content="Hi，我是 MUI 小管家！">
+							<img class="msg-user-img" src="../images/lpc.jpg" alt="">
+							<div class="msg-content">
+								<div class="msg-content-inner">
+										hlsdfjkhsjkhlsdfjkhljdfljkhlsjhojnsdflmnbjrthlnlasdfbsjifljhnoeris
+								</div>
+								<div class="msg-content-arrow"></div>
+							</div>
+							<div class="mui-item-clear"></div>
+						</div>
+						<div class="msg-item  msg-item-self" msg-type="text" msg-content="538">
+							<img class="msg-user msg-user-img" src="../images/head1.png" alt="">
+							<div class="msg-content">
+								<div class="msg-content-inner">
+										妈的智障
+								</div>
+								<div class="msg-content-arrow"></div>
+							</div>
+							<div class="mui-item-clear"></div>
+						</div>
+						<div class="msg-item " msg-type="text" msg-content="Hi，我是 MUI 小管家！">
+							<img class="msg-user-img" src="../images/lpc.jpg" alt="">
+							<div class="msg-content">
+								<div class="msg-content-inner">
+										hlsdfjkhsjkhlsdfjkhljdfljkhlsjhojnsdflmnbjrthlnlasdfbsjifljhnoeris
+								</div>
+								<div class="msg-content-arrow"></div>
+							</div>
+							<div class="mui-item-clear"></div>
+						</div>
+						<div class="msg-item  msg-item-self" msg-type="text" msg-content="538">
+							<img class="msg-user msg-user-img" src="../images/head1.png" alt="">
+							<div class="msg-content">
+								<div class="msg-content-inner">
+										妈的智障
+								</div>
+								<div class="msg-content-arrow"></div>
+							</div>
+							<div class="mui-item-clear"></div>
+						</div>
+						<div class="msg-item " msg-type="text" msg-content="Hi，我是 MUI 小管家！">
+							<img class="msg-user-img" src="../images/lpc.jpg" alt="">
+							<div class="msg-content">
+								<div class="msg-content-inner">
+										hlsdfjkhsjkhlsdfjkhljdfljkhlsjhojnsdflmnbjrthlnlasdfbsjifljhnoeris
+								</div>
+								<div class="msg-content-arrow"></div>
+							</div>
+							<div class="mui-item-clear"></div>
+						</div>
+						<div class="msg-item  msg-item-self" msg-type="text" msg-content="538">
+							<img class="msg-user msg-user-img" src="../images/head1.png" alt="">
+							<div class="msg-content">
+								<div class="msg-content-inner">
+										妈的智障
+								</div>
+								<div class="msg-content-arrow"></div>
+							</div>
+							<div class="mui-item-clear"></div>
+						</div>-->
+					</div>
+					<div name="bottom" id="bottom"></div>
+				<!--</div>
+			</div>-->
+			
+				
+			
+			
+		</div>
+		<footer>
+			<div class="footer-left">
+				<i id='msg-image' class="mui-icon mui-icon-camera" style="font-size: 28px;"></i>
+			</div>
+			<div class="footer-center">
+				<textarea id='msg-text' type="text" class='input-text' href="#bottom" ></textarea>
+			</div>
+			<label  class="footer-right">
+				<i id='msg-send' class="mui-icon mui-icon-paperplane"></i>
+			</label>
+		</footer>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/arttmpl.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.wilddog.com/sdk/js/2.3.9/wilddog.js"></script>
+		<script src="../js/wilddogData.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			/*mui('.mui-scroll-wrapper').scroll({
+				 indicators: false, //是否显示滚动条
+				deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+			});*/
+			mui.plusReady(function(){
+				//这个页面需要获取三个参数才能正常启动，对方的昵称，头像URL，以及用户名
+				mui('h1.my-title')[0].innerHTML = plus.webview.currentWebview().nickname;
+				var target_account = plus.webview.currentWebview().account;
+				var my_account = plus.storage.getItem('account');
+				var target_photoUrl = plus.webview.currentWebview().photoUrl;
+				var msg_list = document.getElementById('msg-list');
+				document.getElementById('msg-send').addEventListener('tap',function(){
+					var text = document.getElementById('msg-text')
+					var message = text.value;
+					var time = getDataString();
+					var data = {
+							"sender" : my_account,
+							"content" : message,
+							"time" : time,
+							"type" : "text"
+						};
+					/*var html = template('msg-template-self',data);
+					document.getElementById('msg-list').innerHTML = document.getElementById('msg-list').innerHTML + html;*/
+					//字符串小的名字在前面作为数据库存储信息的名字
+					if(target_account < my_account){
+						wilddogData.wirteData("/message_board/" + target_account + "To" + my_account,time,data);
+					}else if(target_account > my_account){
+						wilddogData.wirteData("/message_board/" + my_account + "To" + target_account,time,data);
+					}
+					text.value = "";
+				},false);
+				
+				//监听数据变化,更新视图
+				if(target_account < my_account){
+					wilddogData.getDataOnChildAdded("/message_board/" + target_account + "To" + my_account,function(data){
+						if(data.sender == my_account){
+							data.photoUrl = plus.storage.getItem('photoUrl');
+							var html = template('msg-template-self',data);
+							document.getElementById('msg-list').innerHTML = document.getElementById('msg-list').innerHTML + html;
+							//将滚动条滚到底部
+							//mui('.mui-scroll-wrapper').scroll().scrollToBottom();
+							msg_list.scrollTop = msg_list.scrollHeight - msg_list.offsetHeight;
+						}else{
+							data.photoUrl = target_photoUrl;
+							var html = template('msg-template-target',data);
+							document.getElementById('msg-list').innerHTML = document.getElementById('msg-list').innerHTML + html;
+							//mui('.mui-scroll-wrapper').scroll().scrollToBottom();
+							msg_list.scrollTop = msg_list.scrollHeight - msg_list.offsetHeight;
+						}
+					});
+				}else if(target_account > my_account){
+					wilddogData.getDataOnChildAdded("/message_board/" + my_account + "To" + target_account,function(data){
+						if(data.sender == my_account){
+							data.photoUrl = plus.storage.getItem('photoUrl');
+							var html = template('msg-template-self',data);
+							document.getElementById('msg-list').innerHTML = document.getElementById('msg-list').innerHTML + html;
+							//mui('.mui-scroll-wrapper').scroll().scrollToBottom();
+							msg_list.scrollTop = msg_list.scrollHeight - msg_list.offsetHeight;
+						}else{
+							data.photoUrl = target_photoUrl;
+							var html = template('msg-template-target',data);
+							document.getElementById('msg-list').innerHTML = document.getElementById('msg-list').innerHTML + html;
+							//mui('.mui-scroll-wrapper').scroll().scrollToBottom();
+							msg_list.scrollTop = msg_list.scrollHeight - msg_list.offsetHeight;
+						}
+					});
+				}
+				
+				document.getElementById('msg-image').addEventListener('tap', function(event) {
+					var btnArray = [{
+						title: "拍照"
+					}, {
+						title: "从相册选择"
+					}];
+					plus.nativeUI.actionSheet({
+						title: "选择照片",
+						cancel: "取消",
+						buttons: btnArray
+					}, function(e) {
+						var index = e.index;
+						switch (index) {
+							case 0:
+							break;
+							case 1:
+							var cmr = plus.camera.getCamera();
+							cmr.captureImage(function(path) {
+								send({
+									sender: 'self',
+									type: 'image',
+									content: "file://" + plus.io.convertLocalFileSystemURL(path)
+								});
+							}, function(err) {});
+							break;
+							case 2:
+							plus.gallery.pick(function(path) {
+								send({
+									sender: 'self',
+									type: 'image',
+									content: path
+								});
+							}, function(err) {}, null);
+							break;
+						}
+					});
+				}, false);
+				
+				/*document.getElementById('msg-text').addEventListener('tap',function(){
+					
+					mui('.mui-scroll-wrapper').scroll().scrollToBottom(50);
+				},false);*/
+			});
+			
+			
+			//获取当前时间的字符串格式
+			function getDataString(){
+				var now = new Date();
+				return now.getFullYear() + "_" + now.getMonth() + "_" + now.getDate() + "_" + now.getHours() + "_" + now.getMinutes() + "_" + now.getSeconds();
+			}
+			
+		</script>
+
+	</body>
+
+</html>

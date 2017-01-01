@@ -1,0 +1,416 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/icomoon.css"/>
+		<style type="text/css">
+			body{
+				color: #565656;
+			}
+			#header .mui-icon{
+				color: white;
+			}
+			.my-title{
+				color: white;
+			}
+			nav.mui-bar{
+		    	-webkit-box-shadow: 0 0 6px #ddd; 
+	    		box-shadow: 0 0 6px #ddd; 
+		    }
+		    
+		    .mui-bar-tab{
+		    	transition: bottom ease-in-out 0.3s;
+		    }
+		    
+		    .mui-active{
+		    	color: #929292 !important;
+		    }
+			.mui-bar-transparent{
+				background-color: rgba(30, 138, 226, 0);
+			}
+			
+			.mui-content{
+				text-align: center;
+			}
+			
+			.profile{
+				padding: 60px 0px 20px 0px;
+				text-align: center;
+				position: relative;
+				background-color: rgb(74, 164, 236);
+			}
+			
+			.profile img{
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				border: 5px solid white;
+			}
+			
+		
+			
+			.profile .description{
+				margin-top: 10px;
+				color: white;
+				font-weight: 400;
+				font-size: 15px;
+			}
+			
+			
+			.inline-block{
+				display: inline-block;
+				background-color: white;
+				width: 100%;
+				margin: 0px;
+				padding: 15px 0px 5px 0px;
+				box-shadow: 0px 0px 9px #dedede;
+			}
+			
+			
+			.inline-block li{
+				display: inline-block;
+				width: 32%;
+			}
+			
+			.inline-block li p{
+				font-size: 15px;
+				line-height: 16px;
+				color: #565656;
+				margin-bottom: 5px;
+			}
+			
+			.inline-block li:nth-of-type(3){
+				border: 0px;
+			}
+			
+			
+			/*post样式*/
+			.post-wrapper{
+				background: #FFFFFF;
+				text-align: initial;
+			}
+			
+			.state-normal{
+				background-color: #FFFFFF;
+				color: #565656;
+			}
+
+			.state-bad{
+				background-color: #2D3642;
+				color: white;
+			}
+			
+			.state-happy{
+				background-color: #ef8d8a;
+				color: white;
+			}
+			
+			.post-cell{
+				position: relative;
+				padding: 20px 15px;
+				margin-bottom: 10px;
+			}
+			
+			.post-header{
+				height: 40px;
+			}
+			
+			.post-header img{
+				height: 40px;
+				width: 40px;
+				border-radius: 50%;
+				vertical-align: top;
+				position: relative;
+			}
+			
+			.post-header .post-info{
+				padding-left: 10px;
+				display: inline-block;
+				
+			}
+			.post-info span{
+				height: 18px;
+				padding: 0px;
+				margin: 0px;
+				font-size: 14px;
+				display: block;
+			}
+			
+			.post-info span:first-child{
+				margin-bottom: 4px;
+			}
+			
+			.post-content{
+				padding: 15px 0px;
+				font-size: 15px;
+			}
+			
+			.post-comment{
+				height: 25px;
+				font-size: 14px;
+				line-height: 170%;
+				
+			}
+			
+			
+			.post-comment span{
+				padding: 0px 10px;
+				font-size: 20px;
+			}
+			
+			.post-comment span:first-of-type{
+				padding-left: 0px;
+			}
+			.more{
+				position: absolute;
+				top: 15px;
+				right: 0;
+				font-size: 30px;
+				opacity: 0.8;
+			}
+		</style>
+	</head>
+		
+	<body>
+		<header id="header" class="mui-bar mui-bar-transparent">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="nickname" class="mui-title my-title"></h1>
+			<a id="edit_account" class="mui-icon mui-icon-compose mui-pull-right"></a>
+		</header>
+		<div class="mui-content">
+		   
+			<section class="profile">
+				<img id="photoUrl">
+				<p id="personal" class="description"></p>
+			</section>
+			<ul class="inline-block">
+				<li id="moments">
+					<p>我的吐槽</p>
+					<p>3</p>
+				</li>
+				<li id="follow">
+					<p>我关注的人</p>
+					<p id="followLength">null</p>
+				</li>
+				<li id="followed">
+					<p>关注我的人</p>
+					<p id="followedLength">null</p>
+				</li>
+			</ul>
+			<div class="post-wrapper">
+				<div class="post-cell state-bad">
+					<div class="post-header">
+						<img src="../images/head1.png"/>
+						<div class="post-info">
+							<span>我是键盘侠</span>
+							<span>11月23日 11:45</span>
+						</div>
+						<div class="icon-more_vert more">
+							
+						</div>
+					</div>
+					<div class="post-content">
+						想得太多，做得太少<br/>
+						还是人傻一点好，简简单单的多好<br/>
+						做人真不能像我
+					</div>
+					<div class="post-comment">
+						<span class="icon-star-empty"></span>12
+						<span class="icon-eye"></span>14
+						
+					</div>
+				</div>
+				<div class="post-cell state-normal">
+					<div class="post-header">
+						<img src="../images/head1.png"/>
+						<div class="post-info">
+							<span>我是键盘侠</span>
+							<span>11月22日 11:45</span>
+						</div>
+						<div class="icon-more_vert more">
+							
+						</div>
+					</div>
+					<div class="post-content">
+						今心里空落落的 很难受 一点都不开心<br/>
+ 						两天没吃东西了 一点胃口都没有 <br/>
+						头晕晕的 可我就是没倒 <br/>
+						我也不知道我能坚持多久 又累又痛的					
+					</div>
+					<div class="post-comment">
+						<span class="icon-star-empty"></span>12
+						<span class="icon-eye"></span>14
+						
+					</div>
+				</div>
+				<div class="post-cell state-happy">
+					<div class="post-header">
+						<img src="../images/head1.png"/>
+						<div class="post-info">
+							<span>我是键盘侠</span>
+							<span>11月21日 11:45</span>
+						</div>
+						<div class="icon-more_vert more">
+							
+						</div>
+					</div>
+					<div class="post-content">
+						今心里空落落的 很难受 一点都不开心<br/>
+ 						两天没吃东西了 一点胃口都没有 <br/>
+						头晕晕的 可我就是没倒 <br/>
+						我也不知道我能坚持多久 又累又痛的					
+					</div>
+					<div class="post-comment">
+						<span class="icon-star-empty"></span>12
+						<span class="icon-eye"></span>14
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+		    <a id="info" class="mui-tab-item" >
+		        <span class="mui-icon mui-icon-info"></span>
+		        <span class="mui-tab-label">举报</span>
+		    </a>
+		    <a id="chat" class="mui-tab-item" >
+		        <span class="mui-icon mui-icon-chatboxes"></span>
+		        <span class="mui-tab-label">私信</span>
+		    </a>
+		</nav>
+		<script src="../js/mui.min.js"></script>
+		<script src="https://cdn.wilddog.com/sdk/js/2.3.9/wilddog.js"></script>
+		<script src="../js/wilddogData.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+				var self = plus.webview.currentWebview();
+				var account = self.account;
+				
+				var local_account = plus.storage.getItem('account');
+				if(local_account != account){
+					document.getElementById('edit_account').style.display = "none";
+				}else{
+					document.getElementsByTagName('nav')[0].style.display = "none";
+				}
+				wilddogData.getData("/account_board/" + account,function(data){
+					document.getElementById('photoUrl').setAttribute('src',data.photoUrl);
+					document.getElementById('personal').innerHTML = data.personal;
+					document.getElementById('nickname').innerHTML = data.nickname;
+					if(data.follow){
+						document.getElementById('followLength').innerHTML = Object.keys(data.follow).length;
+					}else{
+						document.getElementById('followLength').innerHTML = "0";
+					}
+					if(data.followed){
+						document.getElementById('followedLength').innerHTML = Object.keys(data.followed).length;
+					}else{
+						document.getElementById('followedLength').innerHTML = "0";
+					}
+					
+				});
+				
+				//关注跳转
+				document.getElementById('follow').addEventListener('tap',function(){
+					var followPage = plus.webview.getWebviewById('htmls/follow.html');
+					mui.fire(followPage, 'loadFollows',{
+					   	account:account
+					});
+					plus.storage.setItem('otherfollow','1');
+					mui.openWindow({
+						id:"htmls/follow.html"
+					});
+				},false);
+				
+				//粉丝跳转
+				document.getElementById('followed').addEventListener('tap',function(){
+					var followedPage = plus.webview.getWebviewById('htmls/followed.html');
+					
+					mui.fire(followedPage, 'loadFolloweds',{
+					   	account:account
+					});
+					plus.storage.setItem('otherfollowed','1');
+					mui.openWindow({
+						id:"htmls/followed.html"
+					});
+				},false);
+				
+				//私信跳转
+				document.getElementById('chat').addEventListener('tap',function(){
+					var photoUrl = document.getElementById('photoUrl').getAttribute('src');
+					var nickname = document.getElementById('nickname').innerHTML;
+					mui.openWindow({
+						url:"chat.html",
+						id:"htmls/chat.html",
+						extras: {
+							nickname: nickname,
+							account: account,
+							photoUrl: photoUrl
+						}
+					});
+				},false);
+				
+				//举报
+				document.getElementById('info').addEventListener('tap',function(){
+					var btnArray = ['是', '否'];
+					mui.confirm("你确定要举报此用户吗？","举报",btnArray,function(e){
+						if(e.index == 0){
+							mui.toast("举报成功，暗面小管家会及时处理！")
+						}
+					});
+				},false);
+			});
+			
+			//修改账户信息
+			document.getElementById('edit_account').addEventListener('tap',function(){
+				mui.openWindow({
+					url: 'edit_account.html',
+					id:"htmls/edit_account.html"
+				});
+			},false);
+			
+			
+			
+			//touch事件判断上下滑动
+			document.addEventListener('touchstart',touch, false);   
+		    document.addEventListener('touchend',touch, false); 
+		    var startX,startY,endX,endY;
+		      
+		    function touch (event){  
+		        var event = event || window.event;  
+		  
+		        switch(event.type){  
+		            case "touchstart":
+		            	startX = event.touches[0].clientX;
+		            	startY = event.touches[0].clientY;
+		                //console.log("Touch started (" + event.touches[0].clientX + "," + event.touches[0].clientY + ")");  
+		                break;  
+		            case "touchend":
+		            	endX = event.changedTouches[0].clientX;
+		            	endY = event.changedTouches[0].clientY;
+		            	//上滑事件,显示
+		            	if(endY - startY > 3){
+		            		var radius = (endY - startY)/(endX - startX);
+		            		if(radius > 1 || radius < -1){
+		            			mui('.mui-bar-tab')[0].style.bottom = 0 + 'px';
+		            		}
+		            	}else if(startY - endY > 3){
+		            		//下滑事件隐藏
+		            		var radius = (endY - startY)/(endX - startX);
+		            		if(radius > 1 || radius < -1){
+		            			mui('.mui-bar-tab')[0].style.bottom = -50 + 'px';
+		            		}
+		            	}
+		                //console.log("<br/>Touch end (" + event.changedTouches[0].clientX + "," + event.changedTouches[0].clientY + ")");  
+		                break;    
+		        }  
+		          
+		    }  
+		</script>
+	</body>
+
+</html>

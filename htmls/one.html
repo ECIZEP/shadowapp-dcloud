@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>one</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/icomoon.css"/>
+		<style type="text/css">
+		
+			/*头部nav样式*/
+			.mui-bar-nav {
+			    top: 0;
+			    -webkit-box-shadow: 0 1px 6px transparent;
+			    box-shadow: 0 1px 6px transparent;
+			}
+			.bar-nav{
+	    		background: #2D3642;
+	    	}
+	    	
+	    	.white-color{
+		    		color: white;
+		    }	
+	    	
+	    	.mui-bar .my-title{
+	    		color: white;
+	    		left: initial;
+	    		right: initial;
+	    	}
+	    	
+	    	.mui-bar-tab .mui-tab-item.mui-active{
+			    color: black;
+			}
+			.mui-bar-nav .myicon{
+				display: inline-block;
+				position: relative;
+			}
+			.myicon span{
+				margin-left: 0px !important;
+			}
+			
+			.mui-bar .mui-icon {
+			    font-size: 34px;
+			    padding-top: 5px;
+			    padding-bottom: 5px;
+			}
+			
+			
+			/*post样式*/
+			.post-wrapper{
+				background: #FFFFFF;
+				text-align: initial;
+			}
+			
+			.state-normal{
+				background-color: #FFFFFF;
+				color: #565656;
+			}
+
+			.state-bad{
+				background-color: #2D3642;
+				color: white;
+			}
+			
+			.state-happy{
+				background-color: #ef8d8a;
+				color: white;
+			}
+			
+			.post-cell{
+				position: relative;
+				padding: 20px 15px;
+				margin-bottom: 10px;
+			}
+			
+			.post-header{
+				height: 40px;
+			}
+			
+			.post-header img{
+				height: 40px;
+				width: 40px;
+				border-radius: 50%;
+				vertical-align: top;
+				position: relative;
+			}
+			
+			.post-header .post-info{
+				padding-left: 10px;
+				display: inline-block;
+				
+			}
+			.post-info span{
+				height: 18px;
+				padding: 0px;
+				margin: 0px;
+				font-size: 14px;
+				display: block;
+			}
+			
+			.post-info span:first-child{
+				margin-bottom: 4px;
+			}
+			
+			.post-content{
+				padding: 15px 0px;
+				font-size: 15px;
+			}
+			
+			.post-comment{
+				height: 25px;
+				font-size: 14px;
+				line-height: 170%;
+				
+			}
+			
+			
+			.post-comment span{
+				padding: 0px 10px;
+				font-size: 20px;
+			}
+			
+			.post-comment span:first-of-type{
+				padding-left: 0px;
+			}
+			.more{
+				position: absolute;
+				top: 15px;
+				right: 0;
+				font-size: 30px;
+				opacity: 0.8;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav bar-nav">
+		    <h1 id="title" class="mui-title mui-text-left my-title ">暗面</h1>
+		    <div class="myicon white-color mui-pull-right">
+		    	<a href="#addPopover" id="openPopover"><span class="mui-icon mui-icon-plusempty white-color"></span></a>
+		    </div>
+		</header>
+		<div class="mui-content">
+		    <div class="post-wrapper">
+				
+				<div class="post-cell state-bad">
+					<div class="post-header">
+						<img src="../images/head1.png"/>
+						<div class="post-info">
+							<span>暗面小管家，专封各种不服</span>
+							<span>11月23日 11:45</span>
+						</div>
+						<div class="icon-more_vert more">
+							
+						</div>
+					</div>
+					<div class="post-content">
+						想得太多，做得太少<br/>
+						还是人傻一点好，简简单单的多好<br/>
+						做人真不能像我
+					</div>
+					<div class="post-comment">
+						<span class="icon-star-empty"></span>12
+						<span class="icon-eye"></span>14
+						
+					</div>
+				</div>
+				<div class="post-cell state-normal">
+					<div class="post-header">
+						<img src="../images/head1.png"/>
+						<div class="post-info">
+							<span>暗面小管家，专封各种不服</span>
+							<span>11月22日 11:45</span>
+						</div>
+						<div class="icon-more_vert more">
+							
+						</div>
+					</div>
+					<div class="post-content">
+						今心里空落落的 很难受 一点都不开心<br/>
+ 						两天没吃东西了 一点胃口都没有 <br/>
+						头晕晕的 可我就是没倒 <br/>
+						我也不知道我能坚持多久 又累又痛的					
+					</div>
+					<div class="post-comment">
+						<span class="icon-star-empty"></span>12
+						<span class="icon-eye"></span>14
+						
+					</div>
+				</div>
+				<div class="post-cell state-happy">
+					<div class="post-header">
+						<img src="../images/head1.png"/>
+						<div class="post-info">
+							<span>暗面小管家，专封各种不服</span>
+							<span>11月21日 11:45</span>
+						</div>
+						<div class="icon-more_vert more">
+							
+						</div>
+					</div>
+					<div class="post-content">
+						今心里空落落的 很难受 一点都不开心<br/>
+ 						两天没吃东西了 一点胃口都没有 <br/>
+						头晕晕的 可我就是没倒 <br/>
+						我也不知道我能坚持多久 又累又痛的					
+					</div>
+					<div class="post-comment">
+						<span class="icon-star-empty"></span>12
+						<span class="icon-eye"></span>14
+						
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<div id="addPopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<ul style="margin-top: 5px;" class="mui-table-view">
+				<h4 class="mui-content-padded">性别</h4>
+			    <div class="mui-input-row mui-radio">
+					<label>男</label>
+					<input name="gender" type="radio">
+				</div>
+				<div class="mui-input-row mui-radio">
+					<label>女</label>
+					<input name="gender" type="radio">
+				</div>
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+				var mainPage = plus.webview.currentWebview().parent();
+				mui(".mui-content")[0].addEventListener('tap',function(){
+					
+					//mui.fire(mainPage,'hidebar');
+				},false);
+				
+			});
+			
+		</script>
+	</body>
+
+</html>

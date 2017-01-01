@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-bar{
+				background-color: #2D3642;
+			}
+			
+			.mui-scroll-wrapper{
+				top: 45px;
+			}
+			
+			.mui-bar .mui-pull-left{
+				color: white;
+			}
+	    	
+	    	.mui-bar .my-title{
+	    		color: white;
+	    	}
+	    	
+	    	.mui-bar-tab .mui-tab-item.mui-active{
+			    color: black;
+			}
+			
+			.mui-scroll .mui-table-view{
+				font-size: 15px;
+			}
+			
+			.mui-table-view-cell:after{
+				display: none;
+			}
+			
+			.mui-table-view-cell img{
+				border-radius: 50%;
+			}
+			
+			.mui-table-view-cell .mui-media-body{
+				line-height: 40px;
+			}
+			
+			.mui-table-view .mui-btn{
+				width: 90px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+			}
+		
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-navbar-inner mui-bar mui-bar-nav">
+			<button type="button" class="mui-left mui-action-back mui-btn mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>粉丝
+			</button>
+		</header>
+		<div class="mui-content">
+		    <div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view" id="lists">
+						<!--<li class="mui-table-view-cell mui-media">
+							<a>
+								<img class="mui-media-object mui-pull-left" src="../images/head.jpg">
+								<div class="mui-media-body">cindy_mz</div>
+								<button type="button" class="mui-btn">已关注</button>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a>
+								<img class="mui-media-object mui-pull-left" src="../images/head1.png">
+								<div class="mui-media-body">ECIZEP</div>
+								<button type="button" class="mui-btn">已关注</button>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a>
+								<img class="mui-media-object mui-pull-left" src="../images/head2.jpg">
+								<div class="mui-media-body">sumecat</div>
+								<button type="button" class="mui-btn mui-btn-primary">关注</button>
+							</a>
+						</li>-->
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="https://cdn.wilddog.com/sdk/js/2.3.9/wilddog.js"></script>
+		<script src="../js/wilddogData.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			window.addEventListener('loadFolloweds', function(event) {
+				//获得事件参数 用户的account
+				var account = event.detail.account;
+				//根据account向服务器请求用户数据
+				var lists = document.getElementById('lists');
+				lists.innerHTML = "";
+				wilddogData.getData("/account_board/" + account, function(data) {
+					var elementNames = Object.keys(data.followed);
+					for(var i = 0; i < elementNames.length; i++) {
+						wilddogData.getData("/account_board/" + elementNames[i], function(account) {
+							return function(data) {
+								var innerHTML = "";
+								innerHTML = innerHTML + "<li class='mui-table-view-cell mui-media' data-account = '" + account + "'><a><img class='mui-media-object mui-pull-left' src='";
+								innerHTML = innerHTML + data.photoUrl + "'><div class='mui-media-body' data-photourl = '" + data.photoUrl + "' data-account = '" + account + "'>" + data.nickname;
+								innerHTML = innerHTML + "</div><button type='button' class='mui-btn'>已关注</button></a></li>";
+								lists.innerHTML = lists.innerHTML + innerHTML;
+							}
+						}(elementNames[i]));
+					}
+				});
+				
+			});
+			
+			mui.plusReady(function() {
+				//给列表添加点击事件
+				mui('.mui-table-view').on('tap', '.mui-table-view-cell', function(e) {
+					var tag = e.target.tagName;
+					if(tag == "BUTTON" || tag == 'DIV' || tag == 'IMG'){
+						e.stopPropagation();
+					}
+					mui.openWindow({
+						url: "profile.html",
+						id: "htmls/" + this.dataset.account,
+						extras: {
+							account: this.dataset.account
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+
+</html>

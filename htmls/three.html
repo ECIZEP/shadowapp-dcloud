@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>three</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style type="text/css">
+		
+			#sliderSegmentedControl{
+				background-color: #2D3642;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item{
+				color: rgba(255,255,255,0.6);
+			}
+			.mui-segmented-control-inverted .mui-control-item.mui-active {
+			    color: #4cd964;
+			    border-bottom: 2px solid #4cd964;
+			    background: 0 0;
+			}
+			
+			.mui-slider .mui-slider-group .mui-control-content {
+				height: calc(100vh - 38px);
+			}
+			
+			.mui-table-view-cell img{
+				border-radius: 50%;
+			}
+			
+			.mui-table-view-cell .time{
+				padding-left: 5px;
+				color:#8f8f94;
+			}
+			
+			#item1mobile .mui-table-view-cell{
+				border-bottom: 1px solid #ddd;
+			}
+			#item1mobile .mui-table-view-cell:after{
+				height: 0px;
+			}
+			
+			#item1mobile .unread:before{
+				top:5px;
+				left: 45px;
+				content: attr(data-tip);
+				display: block;
+				position: absolute;
+				z-index: 3;
+				width: 17px;
+				height: 17px;
+				border-radius: 50%;
+				background: red;
+				color: white;
+				text-align: center;
+				line-height: 17px;;
+				font-size: 12px;
+			}
+			
+			#item2mobile .mui-media-body{
+				line-height: 40px;
+			}
+			
+			#item2mobile .mui-table-view-cell:after{
+				background: transparent;
+			}
+			
+			.mui-scroll,.mui-scroll-wrapper{
+				position: relative;
+			}
+			
+			.mui-loading{
+				border: 0px;
+			}
+			
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{
+				border-top: 0px;
+			}
+			
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+				color: white;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar{
+				background-color:#848c8c;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mui-content">
+		    <div id="slider" class="mui-slider">
+		    	<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item mui-active" href="#item1mobile">
+						私信
+					</a>
+					<a class="mui-control-item" href="#item2mobile">
+						已关注
+					</a>
+					<a class="mui-control-item" href="#item3mobile">
+						你
+					</a>
+			    </div>
+		   		<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+		   		<div class="mui-slider-group" id="group">
+		   			<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+		   				<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul id="table1" class="mui-table-view">
+									<!--<li class="mui-table-view-cell mui-media" data-tip='0' data-account="lpc" data-phtotUrl="../images/lpc.jpg" data-nickname = "六级不过不换名">
+										<a>
+											<img class="mui-media-object mui-pull-left" src="../images/lpc.jpg">
+											<div class="mui-media-body">
+												<span id="nickname">六级不过不换名</span>
+												<span class="mui-pull-right time">3个小时前</span>
+												<p id="latestMessage" class="mui-ellipsis">你什么时候回宿舍？</p>
+											</div>
+										</a>
+									</li>-->
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div id="scroll2" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell mui-media">
+										<a>
+											<img class="mui-media-object mui-pull-left" src="../images/head1.png">
+											<div class="mui-media-body">
+												ECIZEP 开始关注 <strong>eminem</strong><span>1小时前</span>
+											</div>
+										</a>
+									</li>
+									<!--<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="../images/head2.jpg">
+											<div class="mui-media-body">
+												sumecat 赞了3个动态<span>6天前</span>
+											</div>
+										</a>
+									</li>-->
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
+						<div id="scroll3" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-loading">
+									<div class="mui-spinner">
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		    </div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="https://cdn.wilddog.com/sdk/js/2.3.9/wilddog.js"></script>
+		<script src="../js/wilddogData.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: false
+			});
+			
+			mui('.mui-scroll-wrapper').scroll({
+				indicators: true //是否显示滚动条
+			});
+			
+			//计算最近一条消息的时间
+			function praseTime(key){
+				var times = key.split("_");
+				var nowtime = new Date();
+				if(nowtime.getFullYear() == times[0]){
+					if(nowtime.getMonth() == times[1]){
+						if(nowtime.getDate() == times[2]){
+							return times[3] + ":" + times[4];
+						}else{
+							if(nowtime.getDate() - parseInt(times[2]) < 7){
+								return nowtime.getDate() - parseInt(times[2]) + "日前";
+							}else{
+								return times[1] + "月" + times[2] + "日";
+							}
+						}
+					}else{
+						return times[1] + "月" + times[2] + "日";
+					}
+				}else{
+					return nowtime.getFullYear() - parseInt(times[0]) + "年前";
+				}
+			}
+			
+			mui.plusReady(function(){
+				var account = plus.storage.getItem('account');
+				var mainPage = plus.webview.currentWebview().parent();
+				//监听有谁给爸爸发消息了，私信前端显示
+				wilddogData.getDataOnChildAdded("/message_board/",function(data,key){
+					var usernames = key.split("To");
+					var targetName = "";
+					if(usernames[0] == account){
+						targetName = usernames[1];
+					}else if(usernames[1] == account){
+						targetName = usernames[0];
+					}else{
+						return;
+					}
+					var MessageKeys = Object.keys(data);
+					var message = data[MessageKeys[MessageKeys.length - 1]].content;
+					wilddogData.getData("/account_board/" + targetName,function(message,account,key){
+						return function(data){
+							var html = "<li id='"+ account +"' class='mui-table-view-cell mui-media' data-tip='0' data-account='" + account + "' data-photoUrl='" + data.photoUrl + "' data-nickname='" + data.nickname + "'>";
+							html = html + "<a><img class='mui-media-object mui-pull-left' src='" + data.photoUrl + "'><div class='mui-media-body'>";
+							html = html + "<span id='nickname'>" + data.nickname + "</span><span class='mui-pull-right time'>"+ praseTime(key) +"</span>";
+							html = html + "<p id='latest-msg' class='mui-ellipsis'>" + message + "</p></div></a></li>";
+							var table1 = document.getElementById("table1");
+							table1.innerHTML = table1.innerHTML + html;
+							//监听消息,更新私信的未读消息和最新消息显示
+							wilddogData.getDataOnChildAdded("/message_board/" + key,function(data,key){
+								var cell = document.getElementById(account);
+								cell.getElementsByTagName('span')[1].innerHTML = praseTime(key)
+								cell.getElementsByTagName('p')[0].innerHTML = data.content;
+								//消息是对方发出的才做未读提示
+								if(data.sender == account){
+									cell.setAttribute('class',cell.getAttribute('class') + " unread");
+									cell.dataset.tip = parseInt(cell.dataset.tip) + 1;
+									//tab显示新消息
+									mui.fire(mainPage,"newMes");
+								}
+							});
+						};
+					}(message,targetName,key));
+				});
+				
+				//初始化的纠正
+				setTimeout(function(){
+					var lis = document.getElementById('table1').getElementsByTagName('li');
+					for(var i = 0;i < lis.length;i++){
+						lis[i].setAttribute('class','mui-table-view-cell mui-media');
+						lis[i].dataset.tip = 0;
+						if(i == lis.length - 1){
+							console.log("finished");
+						}
+					}
+					mui.fire(mainPage,'clearMes');
+				},500);
+				
+			});
+		
+			
+			var html1 = '<ul class="mui-table-view"><li class="mui-table-view-cell">第二个选项卡子项-1</li><li class="mui-table-view-cell">第二个选项卡子项-2</li><li class="mui-table-view-cell">第二个选项卡子项-3</li><li class="mui-table-view-cell">第二个选项卡子项-4</li><li class="mui-table-view-cell">第二个选项卡子项-5</li></ul>';
+			var html3 = '<ul class="mui-table-view"><li class="mui-table-view-cell mui-media"><a href="javascript:;"><img class="mui-media-object mui-pull-left" src="../images/head.jpg"><div class="mui-media-body">cindy_mz 赞了你 <span>3个小时前</span><p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p></div></a></li> <li class="mui-table-view-cell mui-media"><a href="javascript:;"><img class="mui-media-object mui-pull-left" src="../images/head1.png"><div class="mui-media-body">ECIZEP评论了 <span>一天前</span><p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖</p></div></a></li><li class="mui-table-view-cell mui-media"><a href="javascript:;"><img class="mui-media-object mui-pull-left" src="../images/head2.jpg"><div class="mui-media-body">sumecat评论了 <span>一天前</span><p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般</p></div></a></li></ul>';
+			var item3 = document.getElementById('item3mobile');
+			document.getElementById('slider').addEventListener('slide', function(e) {
+				if(e.detail.slideNumber === 1) {
+					if(item3.querySelector('.mui-loading')) {
+						setTimeout(function() {
+							item3.querySelector('.mui-scroll').innerHTML = html3;
+						}, 500);
+					}
+				}
+			});
+			
+			//进入聊天页面
+			mui('.mui-table-view').on('tap', '.mui-table-view-cell', function(e) {
+				var tag = e.target.tagName;
+				if(tag == "P" || tag == 'SPAN' || tag == 'DIV' || tag == 'IMG'){
+					e.stopPropagation();
+				}
+				this.dataset.tip = 0;
+				this.setAttribute('class','mui-table-view-cell mui-media');
+				mui.openWindow({
+					url: "chat.html",
+					id: "chat.html",
+					extras: {
+						nickname: this.dataset.nickname,
+						account: this.dataset.account,
+						photoUrl: this.dataset.photourl
+					}
+				});
+			});
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>four</title>
+		 <link href="../css/mui.min.css" rel="stylesheet"/>
+		 <style type="text/css">
+			.mui-bar{
+				background-color: #2D3642;
+			}
+			
+			.mui-bar .mui-btn-link{
+				color: white;
+			}
+	    	
+	    	.mui-bar .my-title{
+	    		color: white;
+	    	}
+	    	
+	    	.mui-bar-tab .mui-tab-item.mui-active{
+			    color: black;
+			}
+			
+			.head {
+				height: 40px;
+			}
+			#head {
+				line-height: 40px;
+			}
+			.head-img {
+				width: 40px;
+				height: 40px;
+			}
+			
+			#head-img1 {
+			    position: absolute;
+			    bottom: 10px;
+			    right: 40px;
+			    width: 40px;
+			    height: 40px;
+			}
+			
+			.mui-table-view-cell .longwords{
+				overflow: initial;
+				white-space: initial !important;
+			}
+			
+			.mui-table-view-cell .longwords .personal{
+				display: inline-block;
+				text-align: right;
+				width: 70%;
+			}
+			
+			#middlePopover{
+				left: 50% !important;
+				top: 40% !important;
+				margin-left: -140px;
+				margin-top: -42px;
+			}
+			/*隐藏下滑箭头*/
+			.mui-popover .mui-popover-arrow.mui-bottom{
+				display: none!important;
+			}
+			
+		 	.mui-table-view {
+			    margin-top: 20px;
+			}
+			.update {
+			    font-style: normal;
+			    color: #999999;
+			    margin-right: 25px;
+			    font-size: 15px;
+			}
+			
+		 </style>
+	</head>
+	<body>
+		<header class="mui-navbar-inner mui-bar mui-bar-nav">
+			<h1 id="title" class="mui-title my-title">暗面</h1>
+		</header>
+		<div class="mui-content">
+		    <ul class="mui-table-view">
+				<li id="account-click" class="mui-table-view-cell">
+				    <a class="mui-navigate-right">
+						<img class="mui-media-object mui-pull-left head-img" id="head-img" src="../images/user.png">
+						<div class="mui-media-body" id="account-info">
+							ECIZEP
+							<p class="mui-ellipsis">账号:jueqi199</p>
+						</div>
+					</a>
+				</li>	    
+			</ul>	
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" id="followTable">
+					<a class="mui-navigate-right">关注
+						<i class="mui-pull-right update" id="follow"></i>
+					</a>
+				</li>
+				<li class="mui-table-view-cell" id="followedTable">
+					<a class="mui-navigate-right">粉丝
+						<i class="mui-pull-right update" id="followed"></i>
+					</a>
+				</li>
+			</ul>
+			
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="#">通知</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="#">隐私</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="#">通用</a>
+				</li>
+			</ul>
+			
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="#">版本 
+						<i class="mui-pull-right update">V1.0</i>
+					</a>
+				</li>
+			</ul>
+			
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-text-center">
+					<a id="logout">注销 </a>
+				</li>
+			</ul>
+		</div>
+		<div id="middlePopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<ul style="margin-top: 5px;" class="mui-table-view">
+				<h4 class="mui-content-padded">性别</h4>
+			    <div class="mui-input-row mui-radio">
+					<label>男</label>
+					<input name="radio1" type="radio">
+				</div>
+				<div class="mui-input-row mui-radio">
+					<label>女</label>
+					<input name="radio1" type="radio" checked>
+				</div>
+			</ul>
+		</div>
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.wilddog.com/sdk/js/2.3.9/wilddog.js"></script>
+		<script src="../js/wilddogData.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			//初始化单页的区域滚动
+			mui('.mui-scroll-wrapper').scroll();
+			mui.plusReady(function(){
+				//初始化用户数据
+				var account = plus.storage.getItem('account');
+
+				wilddogData.getData("/account_board/" + account,function(data){
+					updateInfo(data);
+					account_data = data;
+					if(data.nickname != null){
+						document.getElementById('account-info').innerHTML = data.nickname + "<p class='mui-ellipsis'>账号:" + account + "</p>";
+					}else{
+						document.getElementById('account-info').innerHTML = "未设置<p class='mui-ellipsis'>账号:" + account + "</p>";
+					}
+					document.getElementById('head-img').setAttribute('src',data.photoUrl);
+					
+					//获取关注人数
+					var followLength = 0;
+					if(data.follow){
+						followLength = Object.keys(data.follow).length
+					}
+					document.getElementById('follow').innerHTML = followLength;
+					//获取粉丝人数
+					var followedLength = 0;
+					if(data.followed){
+						followedLength = Object.keys(data.followed).length
+					}
+					document.getElementById('followed').innerHTML = followedLength;
+
+					//修改用户资料页跳转
+					var accountInfo = document.getElementById('account-click');
+					accountInfo.addEventListener("tap",function(){
+						mui.openWindow({
+							url: 'profile.html',
+							id:"htmls/" + account,
+							extras:{
+								followLength:followLength,
+								followedLength:followedLength,
+								account:account
+							}
+						});
+					},false);
+				});
+				//注销功能
+				var logout = document.getElementById("logout");
+				logout.addEventListener("tap",function(){
+					plus.storage.setItem("isLogin","0");
+					mui.openWindow({
+						url:"login_reg.html",
+						id:"htmls/login_reg.html"				
+					});
+				},false);
+				
+				//更新用户信息，存储到本地
+				function updateInfo(data){
+					plus.storage.setItem('gender',data.gender);
+					plus.storage.setItem('email',data.email);
+					plus.storage.setItem('photoUrl',data.photoUrl);
+					plus.storage.setItem('nickname',data.nickname);
+					plus.storage.setItem('personal',data.personal);
+					plus.storage.setItem('follow',data.follow);
+				}
+				
+				//关注页面预加载
+			    var followpage = mui.preload({
+			    	url: 'follow.html',
+			        id: 'htmls/follow.html'
+			    });
+			    //关注页面预加载数据
+			    if(!followpage) {
+					followpage = plus.webview.getWebviewById('htmls/follow.html');
+					console.log('followpage null');
+				}
+			    followpage.addEventListener('loaded',function () {
+			    	
+				    mui.fire(followpage, 'loadFollows',{
+				    	account:account
+				    });
+				})
+				//关注添加事件跳转
+				document.getElementById('followTable').addEventListener('tap', function() {
+					//follow页面的数据被改变过
+					if(plus.storage.getItem('otherfollow') == '1'){
+			    		mui.fire(followpage, 'loadFollows',{
+					    	account:account
+					    });
+					    plus.storage.setItem('otherfollow','0');
+			    	}
+					mui.openWindow({
+						id: "htmls/follow.html"
+					});
+				}, false);
+				
+				//粉丝页面预加载
+			    var followedpage = mui.preload({
+			    	url: 'followed.html',
+			        id: 'htmls/followed.html'
+			    });
+			    //粉丝页面预加载数据
+			    if(!followedpage) {
+					followedpage = plus.webview.getWebviewById('htmls/followed.html');
+					console.log('followpage null');
+				}
+			    followedpage.addEventListener('loaded',function () {
+				    mui.fire(followedpage, 'loadFolloweds',{
+				    	account:account
+				    });
+				})
+				//粉丝添加事件跳转
+				document.getElementById('followedTable').addEventListener('tap', function() {
+					//followed页面的数据被改变过
+					if(plus.storage.getItem('otherfollowed') == '1'){
+			    		mui.fire(followedpage, 'loadFolloweds',{
+					    	account:account
+					    });
+					    plus.storage.setItem('otherfollowed','0');
+			    	}
+					mui.openWindow({
+						id: "htmls/followed.html"
+					});
+				}, false);
+			});
+		</script>
+	</body>
+</html>

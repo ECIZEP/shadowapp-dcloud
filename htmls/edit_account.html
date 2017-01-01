@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-bar{
+				background-color: #2D3642;
+			}
+			
+			.mui-bar .mui-btn-link{
+				color: white;
+			}
+	    	
+	    	.mui-bar .my-title{
+	    		color: white;
+	    	}
+	    	
+	    	.mui-bar-tab .mui-tab-item.mui-active{
+			    color: black;
+			}
+			
+			.head {
+				height: 40px;
+			}
+			#head {
+				line-height: 40px;
+			}
+			.head-img {
+				width: 40px;
+				height: 40px;
+			}
+			
+			#head-img1 {
+			    position: absolute;
+			    bottom: 10px;
+			    right: 40px;
+			    width: 40px;
+			    height: 40px;
+			}
+			
+			.mui-table-view-cell .longwords{
+				overflow: initial;
+				white-space: initial !important;
+			}
+			
+			.mui-pull-right{
+				color: #999999;
+				font-size: 15px;
+			}
+			
+			.mui-table-view-cell .longwords #personal{
+				display: inline-block;
+				text-align: right;
+				width: 70%;
+			}
+			
+			/*隐藏下滑箭头*/
+			.mui-popover .mui-popover-arrow.mui-bottom{
+				display: none!important;
+			}
+			#genderPopover{
+				left: 50% !important;
+				top: 40% !important;
+				margin-left: -140px;
+				margin-top: -42px;
+			}
+			
+			.mui-table-view {
+			    margin-top: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>个人资料
+				</button>
+		</header>
+		<div class="mui-content">
+		    <ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a id="head" class="mui-navigate-right">头像
+						<span class="mui-pull-right head">
+							<img class="head-img mui-action-preview" id="head-img1" />
+						</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell" id="nicknameTable">
+					<a>昵称<span class="mui-pull-right" id="nickname"></span></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>用户名<span class="mui-pull-right" id="account"></span></a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" >
+					<a id="openPopover" href="#genderPopover">性别<span class="mui-pull-right" id="gender"></span></a>
+				</li>
+				<li class="mui-table-view-cell" id="personalTable">
+					<a class="longwords">个性签名<span class="mui-pull-right" id="personal"></span></a>
+				</li>
+				<li class="mui-table-view-cell" id="emailTable">
+					<a>邮箱地址<span class="mui-pull-right" id="email"></span></a>
+				</li>
+			</ul>
+		</div>
+		<div id="genderPopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<ul style="margin-top: 5px;" class="mui-table-view">
+				<h4 class="mui-content-padded">性别</h4>
+			    <div class="mui-input-row mui-radio">
+					<label data-gender = "男" >男</label>
+					<input name="gender" data-gender = "男" type="radio">
+				</div>
+				<div class="mui-input-row mui-radio">
+					<label data-gender = "女">女</label>
+					<input name="gender" data-gender = "女" type="radio">
+				</div>
+			</ul>
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script src="https://cdn.wilddog.com/sdk/js/2.3.9/wilddog.js"></script>
+		<script src="../js/wilddogData.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			var genderRadio = null;
+			mui.plusReady(function(){
+				//初始化个人资料与弹出层popOver
+				var account = plus.storage.getItem('account');
+				var nickname = plus.storage.getItem('nickname');
+				var gender = plus.storage.getItem('gender');
+				var personal = plus.storage.getItem('personal');
+				var email = plus.storage.getItem('email');
+				var photoUrl = plus.storage.getItem('photoUrl');
+				if(account != null){
+						if(typeof photoUrl == 'null' || typeof photoUrl == "undefined"){
+							document.getElementById('head-img1').setAttribute('src',"../images/logo.png");
+						}else{
+							document.getElementById('head-img1').setAttribute('src',photoUrl);
+						}
+						if(typeof nickname == "null" || typeof nickname == "undefined"){
+							document.getElementById('nickname').innerHTML = "未设置";
+						}else{
+							document.getElementById('nickname').innerHTML = nickname;
+						}
+						
+						if(typeof account == "null" || typeof account == "undefined"){
+							document.getElementById('account').innerHTML = "未设置";
+						}else{
+							document.getElementById('account').innerHTML = account;
+						}
+						
+						if(typeof gender == "null" || typeof gender == "undefined"){
+							document.getElementById('gender').innerHTML = "未设置";
+						}else{
+							document.getElementById('gender').innerHTML = gender;
+							if(gender == '女'){
+								document.getElementById('genderPopover').getElementsByTagName('input')[1].checked = true;
+							}
+						}
+						
+						if(typeof personal == "null" || typeof personal == "undefined"){
+							document.getElementById('personal').innerHTML = "未设置";
+						}else{
+							document.getElementById('personal').innerHTML = personal;
+						}
+						
+						if(typeof email == "null" || typeof email == "undefined"){
+							document.getElementById('email').innerHTML = "未设置";
+						}else{
+							document.getElementById('email').innerHTML = email;
+						}
+				}
+				
+				document.getElementById("nicknameTable").addEventListener('tap', function(e) {
+					e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+					var btnArray = ['确定', '取消'];
+					mui.prompt(' ', ' ', '修改昵称', btnArray, function(e) {
+						if (e.index == 0) {
+							document.getElementById('nickname').innerHTML = e.value;
+							plus.storage.setItem('nickname',e.value);
+							wilddogData.wirteData("/account_board/" + account,"nickname",e.value);
+						} else {
+							
+						}
+					})
+				});
+				
+				document.getElementById("personalTable").addEventListener('tap', function(e) {
+					e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+					var btnArray = ['确定', '取消'];
+					mui.prompt(' ', ' ', '修改个性签名', btnArray, function(e) {
+						if (e.index == 0) {
+							document.getElementById('personal').innerHTML = e.value;
+							plus.storage.setItem('personal',e.value);
+							wilddogData.wirteData("/account_board/" + account,"personal",e.value);
+						} else {
+					
+						}
+					})
+				});
+				
+				document.getElementById("emailTable").addEventListener('tap', function(e) {
+					e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+					var btnArray = ['确定', '取消'];
+					mui.prompt(' ', ' ', '修改邮箱', btnArray, function(e) {
+						if (e.index == 0) {
+							document.getElementById('email').innerHTML = e.value;
+							plus.storage.setItem('email',e.value);
+							wilddogData.wirteData("/account_board/" + account,"email",e.value);
+						} else {
+					
+						}
+					})
+				});
+				
+				mui('.mui-table-view').on('tap',".mui-radio",function(e){
+					value = e.target.dataset.gender;
+					wilddogData.wirteData("/account_board/" + account,"gender",value);
+					document.getElementById('gender').innerHTML = value;
+					plus.storage.setItem('gender',value);
+					mui.back();
+				});
+				
+				
+			});
+		</script>
+	</body>
+
+</html>
