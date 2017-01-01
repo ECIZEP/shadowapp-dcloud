@@ -521,8 +521,8 @@
 			
 			//获取当前时间的字符串格式
 			function getDataString(){
-				var now = new Date();
-				return now.getFullYear() + "_" + now.getMonth() + "_" + now.getDate() + "_" + now.getHours() + "_" + now.getMinutes() + "_" + now.getSeconds();
+				var now = new Date();				
+				return now.getFullYear() + "_" + (now.getMonth()+1) + "_" + now.getDate() + "_" + now.getHours() + "_" + now.getMinutes() + "_" + now.getSeconds();
 			}
 			
 		</script>

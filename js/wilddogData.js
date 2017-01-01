@@ -19,6 +19,12 @@ var wilddogData = {
 			callback(data);
 		});
 	},
+	//删除path路径下的key节点数据
+	removeData: function(path,key){
+		wilddog.initializeApp(this.config);
+		var ref = wilddog.sync().ref(path);
+		ref.child(key).remove();
+	},
 	getDataOnChildAdded: function(path,callback){
 		if(typeof callback != "function"){
 			console.log("回调函数有误");

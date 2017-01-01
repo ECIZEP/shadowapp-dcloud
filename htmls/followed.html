@@ -59,30 +59,10 @@
 			</button>
 		</header>
 		<div class="mui-content">
-		    <div class="mui-scroll-wrapper">
+		    <div  id="refreshContainer" class="mui-scroll-wrapper">
 				<div class="mui-scroll">
 					<ul class="mui-table-view" id="lists">
-						<!--<li class="mui-table-view-cell mui-media">
-							<a>
-								<img class="mui-media-object mui-pull-left" src="../images/head.jpg">
-								<div class="mui-media-body">cindy_mz</div>
-								<button type="button" class="mui-btn">已关注</button>
-							</a>
-						</li>
-						<li class="mui-table-view-cell mui-media">
-							<a>
-								<img class="mui-media-object mui-pull-left" src="../images/head1.png">
-								<div class="mui-media-body">ECIZEP</div>
-								<button type="button" class="mui-btn">已关注</button>
-							</a>
-						</li>
-						<li class="mui-table-view-cell mui-media">
-							<a>
-								<img class="mui-media-object mui-pull-left" src="../images/head2.jpg">
-								<div class="mui-media-body">sumecat</div>
-								<button type="button" class="mui-btn mui-btn-primary">关注</button>
-							</a>
-						</li>-->
+						
 					</ul>
 				</div>
 			</div>
@@ -92,35 +72,109 @@
 		<script src="../js/wilddogData.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			mui.init();
-			window.addEventListener('loadFolloweds', function(event) {
-				//获得事件参数 用户的account
-				var account = event.detail.account;
-				//根据account向服务器请求用户数据
-				var lists = document.getElementById('lists');
-				lists.innerHTML = "";
-				wilddogData.getData("/account_board/" + account, function(data) {
-					var elementNames = Object.keys(data.followed);
-					for(var i = 0; i < elementNames.length; i++) {
-						wilddogData.getData("/account_board/" + elementNames[i], function(account) {
-							return function(data) {
-								var innerHTML = "";
-								innerHTML = innerHTML + "<li class='mui-table-view-cell mui-media' data-account = '" + account + "'><a><img class='mui-media-object mui-pull-left' src='";
-								innerHTML = innerHTML + data.photoUrl + "'><div class='mui-media-body' data-photourl = '" + data.photoUrl + "' data-account = '" + account + "'>" + data.nickname;
-								innerHTML = innerHTML + "</div><button type='button' class='mui-btn'>已关注</button></a></li>";
-								lists.innerHTML = lists.innerHTML + innerHTML;
-							}
-						}(elementNames[i]));
+			
+			function containElement(followNames,account){
+				for(var i = 0;i < followNames.length;i++){
+					if(followNames[i] == account){
+						return true;
 					}
+				}
+				return false;
+			}
+			
+			window.addEventListener('loadFolloweds', function(event) {
+					//获得事件参数 用户的account
+					console.log("followed preload" + event.detail.account);
+					var account = event.detail.account;
+					//根据account向服务器请求用户数据
+					var lists = document.getElementById('lists');
+					lists.innerHTML = "";
+					wilddogData.getData("/account_board/" + account, function(data) {
+						var followedNames = Object.keys(data.followed);
+						//用户关注的人
+						var followNames = plus.storage.getItem('follow').split("_");
+						for(var i = 0; i < followedNames.length; i++) {
+							wilddogData.getData("/account_board/" + followedNames[i], function(account) {
+								return function(data) {
+									var innerHTML = "";
+									innerHTML = innerHTML + "<li class='mui-table-view-cell mui-media' data-account = '" + account + "'><a><img class='mui-media-object mui-pull-left' src='";
+									innerHTML = innerHTML + data.photoUrl + "'><div class='mui-media-body' data-photourl = '" + data.photoUrl + "' data-account = '" + account + "'>" + data.nickname;
+									//如果这个人用户关注了，显示已关注
+									if(containElement(followNames,account)){
+										innerHTML = innerHTML + "</div><button type='button' class='mui-btn'>已关注</button></a></li>";
+									//这个人是用户自己，不显示
+									}else if(account == plus.storage.getItem('account')){
+										innerHTML = innerHTML + "</div></a></li>";
+									//这个人用户没有关注，显示关注按钮
+									}else{
+										innerHTML = innerHTML + "</div><button type='button' class='mui-btn mui-btn-primary'>关注</button></a></li>";
+									}
+									lists.innerHTML = lists.innerHTML + innerHTML;
+								}
+							}(followedNames[i]));
+						}
+					});
 				});
-				
-			});
+			
 			
 			mui.plusReady(function() {
+				
+				
+				function unfollowAccount(account){
+					//修改本地follow
+					console.log(plus.storage.getItem('follow'));
+					var followBefore = plus.storage.getItem('follow').split("_");
+					var index = followBefore.indexOf(account);
+					//console.log(followBefore.indexOf(account));
+					followBefore.splice(index,1);
+					plus.storage.setItem('follow',followBefore.join("_"));
+					console.log(followBefore.join("_"));
+					//修改数据库
+					wilddogData.removeData("/account_board/" + plus.storage.getItem('account') + "/follow/",account);
+					wilddogData.removeData("/account_board/" + account + "/followed/",plus.storage.getItem('account'));
+					//更新tab four页面
+					var fourPage = plus.webview.getWebviewById("four.html");
+					mui.fire(fourPage,"updateLength");
+					plus.storage.setItem('otherfollow','1');
+					plus.storage.setItem('otherfollowed','1');
+				}
+				
+				function followAccount(account){
+					//修改本地follow
+					console.log(plus.storage.getItem('follow'));
+					var followBefore = plus.storage.getItem('follow').split("_");
+					followBefore.push(account);
+					plus.storage.setItem('follow',followBefore.join("_"));
+					console.log(followBefore.join("_")); 
+					//修改数据库
+					wilddogData.wirteData("/account_board/" + plus.storage.getItem('account') + "/follow/",account,"");
+					wilddogData.wirteData("/account_board/" + account + "/followed/",plus.storage.getItem('account'),"");
+					//更新tab four页面
+					var fourPage = plus.webview.getWebviewById("four.html");
+					mui.fire(fourPage,"updateLength");
+					plus.storage.setItem('otherfollow','1');
+					plus.storage.setItem('otherfollowed','1');
+				}
+				
 				//给列表添加点击事件
 				mui('.mui-table-view').on('tap', '.mui-table-view-cell', function(e) {
 					var tag = e.target.tagName;
-					if(tag == "BUTTON" || tag == 'DIV' || tag == 'IMG'){
-						e.stopPropagation();
+					if(tag == "BUTTON"){
+						//取消关注
+						if(e.target.innerHTML == "已关注"){
+							e.target.setAttribute('class','mui-btn mui-btn-primary');
+							e.target.innerHTML = "关注";
+							unfollowAccount(this.dataset.account);
+							mui.toast("已取消关注");
+							return;
+						//添加关注
+						}else if(e.target.innerHTML == "关注"){
+							e.target.setAttribute('class','mui-btn');
+							e.target.innerHTML = "已关注";
+							followAccount(this.dataset.account);
+							mui.toast("成功关注");
+							return;
+						}
 					}
 					mui.openWindow({
 						url: "profile.html",

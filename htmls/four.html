@@ -153,7 +153,6 @@
 			mui.plusReady(function(){
 				//初始化用户数据
 				var account = plus.storage.getItem('account');
-
 				wilddogData.getData("/account_board/" + account,function(data){
 					updateInfo(data);
 					account_data = data;
@@ -208,7 +207,8 @@
 					plus.storage.setItem('photoUrl',data.photoUrl);
 					plus.storage.setItem('nickname',data.nickname);
 					plus.storage.setItem('personal',data.personal);
-					plus.storage.setItem('follow',data.follow);
+					plus.storage.setItem('follow',Object.keys(data.follow).join("_"));
+					plus.storage.setItem('followed',Object.keys(data.followed).join("_"));
 				}
 				
 				//关注页面预加载
@@ -217,16 +217,12 @@
 			        id: 'htmls/follow.html'
 			    });
 			    //关注页面预加载数据
-			    if(!followpage) {
-					followpage = plus.webview.getWebviewById('htmls/follow.html');
-					console.log('followpage null');
-				}
+			    mui.fire(followpage, 'loadFollows',{
+				   	account:account
+				});
 			    followpage.addEventListener('loaded',function () {
-			    	
-				    mui.fire(followpage, 'loadFollows',{
-				    	account:account
-				    });
-				})
+				   console.log("follow run");
+				},false);
 				//关注添加事件跳转
 				document.getElementById('followTable').addEventListener('tap', function() {
 					//follow页面的数据被改变过
@@ -247,15 +243,12 @@
 			        id: 'htmls/followed.html'
 			    });
 			    //粉丝页面预加载数据
-			    if(!followedpage) {
-					followedpage = plus.webview.getWebviewById('htmls/followed.html');
-					console.log('followpage null');
-				}
+			    mui.fire(followedpage, 'loadFolloweds',{
+				    account:account
+				});
 			    followedpage.addEventListener('loaded',function () {
-				    mui.fire(followedpage, 'loadFolloweds',{
-				    	account:account
-				    });
-				})
+				    console.log("followed run");
+				},false);
 				//粉丝添加事件跳转
 				document.getElementById('followedTable').addEventListener('tap', function() {
 					//followed页面的数据被改变过
@@ -269,6 +262,11 @@
 						id: "htmls/followed.html"
 					});
 				}, false);
+				
+				
+				window.addEventListener("updateLength",function(){
+					document.getElementById('follow').innerHTML = plus.storage.getItem('follow').split('_').length;
+				});
 			});
 		</script>
 	</body>

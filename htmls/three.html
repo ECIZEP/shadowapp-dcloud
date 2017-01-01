@@ -24,7 +24,10 @@
 			}
 			
 			.mui-slider .mui-slider-group .mui-control-content {
-				height: calc(100vh - 38px);
+				height: 400px;
+				height: calc(100vh - 40px);
+				height: -webkit-calc(100vh - 40px);
+				
 			}
 			
 			.mui-table-view-cell img{
@@ -35,6 +38,7 @@
 				padding-left: 5px;
 				color:#8f8f94;
 			}
+		
 			
 			#item1mobile .mui-table-view-cell{
 				border-bottom: 1px solid #ddd;
@@ -68,16 +72,13 @@
 				background: transparent;
 			}
 			
-			.mui-scroll,.mui-scroll-wrapper{
-				position: relative;
-			}
-			
 			.mui-loading{
 				border: 0px;
 			}
 			
 			.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{
 				border-top: 0px;
+				border-bottom: 0px;
 			}
 			
 			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
@@ -177,7 +178,7 @@
 				var times = key.split("_");
 				var nowtime = new Date();
 				if(nowtime.getFullYear() == times[0]){
-					if(nowtime.getMonth() == times[1]){
+					if(nowtime.getMonth()+1 == times[1]){
 						if(nowtime.getDate() == times[2]){
 							return times[3] + ":" + times[4];
 						}else{
@@ -225,7 +226,7 @@
 								cell.getElementsByTagName('span')[1].innerHTML = praseTime(key)
 								cell.getElementsByTagName('p')[0].innerHTML = data.content;
 								//消息是对方发出的才做未读提示
-								if(data.sender == account){
+								if(data.sender == account && plus.webview.getTopWebview() != plus.webview.getWebviewById('chat.html')){
 									cell.setAttribute('class',cell.getAttribute('class') + " unread");
 									cell.dataset.tip = parseInt(cell.dataset.tip) + 1;
 									//tab显示新消息
@@ -243,7 +244,7 @@
 						lis[i].setAttribute('class','mui-table-view-cell mui-media');
 						lis[i].dataset.tip = 0;
 						if(i == lis.length - 1){
-							console.log("finished");
+							//console.log("finished");
 						}
 					}
 					mui.fire(mainPage,'clearMes');
@@ -273,6 +274,17 @@
 				}
 				this.dataset.tip = 0;
 				this.setAttribute('class','mui-table-view-cell mui-media');
+				/*var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
+				webviewContent= plus.webview.create("chat.html","chat.html","",{
+					nickname: this.dataset.nickname,
+					account: this.dataset.account,
+					photoUrl: this.dataset.photourl
+				});
+				webviewContent.addEventListener("loaded", function() { //注册新webview的载入完成事件
+			        nwaiting.close(); //新webview的载入完毕后关闭等待框
+			        webviewContent.show("slide-in-right",200); //把新webview窗体显示出来，显示动画效果为速度200毫秒的右侧移入动画
+			    }, false);*/
+				//后台创建webview并打开show.html
 				mui.openWindow({
 					url: "chat.html",
 					id: "chat.html",

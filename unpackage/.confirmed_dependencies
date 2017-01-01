@@ -197,7 +197,9 @@
 			"js/wilddogData.js",
 			"js/mui.min.js",
 			"fonts/mui.ttf",
-			"images/cj.jpg"
+			"images/cj.jpg",
+			"images/lpc.jpg",
+			"images/yyy.jpg"
 		]
 	},
 	"htmls/profile.html": {
@@ -211,7 +213,8 @@
 			"images/head.jpg",
 			"js/wilddogData.js",
 			"images/lpc.jpg",
-			"images/cj.jpg"
+			"images/cj.jpg",
+			"images/yyy.jpg"
 		],
 		"refer": [
 			"htmls/edit_account.html",
