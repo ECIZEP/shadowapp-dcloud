@@ -1,13 +1,16 @@
 var wilddogData = {
+	//配置信息
 	config:{
 		authDomain: "shadow.wilddog.com",
 		syncURL: "https://shadow.wilddogio.com" //输入节点 URL
 	},
+	//写入数据
 	wirteData: function(path,key,value){
 		wilddog.initializeApp(this.config);
 		var ref = wilddog.sync().ref(path);
 		ref.child(key).set(value);
 	},
+	//查询数据
 	getData: function(path,callback){
 		if(typeof callback != "function"){
 			console.log("回调函数有误");
@@ -25,6 +28,7 @@ var wilddogData = {
 		var ref = wilddog.sync().ref(path);
 		ref.child(key).remove();
 	},
+	//监听子节点数据增加
 	getDataOnChildAdded: function(path,callback){
 		if(typeof callback != "function"){
 			console.log("回调函数有误");

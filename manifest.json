@@ -316,7 +316,8 @@
 					"images/lpc.jpg",
 					"js/wilddogData.js",
 					"images/cj.jpg",
-					null
+					null,
+					"images/yyy.jpg"
 				],
 				"refer": [
 					"htmls/chat.html"

@@ -110,7 +110,8 @@
 			"css/mui.min.css",
 			"images/lpc.jpg",
 			"js/wilddogData.js",
-			"images/cj.jpg"
+			"images/cj.jpg",
+			"images/yyy.jpg"
 		],
 		"refer": [
 			"htmls/chat.html"

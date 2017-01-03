@@ -27,7 +27,6 @@
 				height: 400px;
 				height: calc(100vh - 40px);
 				height: -webkit-calc(100vh - 40px);
-				
 			}
 			
 			.mui-table-view-cell img{
@@ -64,7 +63,7 @@
 				font-size: 12px;
 			}
 			
-			#item2mobile .mui-media-body{
+			.mui-media-body.oneline{
 				line-height: 40px;
 			}
 			
@@ -97,13 +96,10 @@
 						私信
 					</a>
 					<a class="mui-control-item" href="#item2mobile">
-						已关注
-					</a>
-					<a class="mui-control-item" href="#item3mobile">
-						你
+						关于你
 					</a>
 			    </div>
-		   		<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+		   		<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
 		   		<div class="mui-slider-group" id="group">
 		   			<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
 		   				<div id="scroll1" class="mui-scroll-wrapper">
@@ -126,35 +122,30 @@
 					<div id="item2mobile" class="mui-slider-item mui-control-content">
 						<div id="scroll2" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
+								<!--<div class="mui-loading">
+									<div class="mui-spinner">
+										
+									</div>
+								</div>-->
 								<ul class="mui-table-view">
 									<li class="mui-table-view-cell mui-media">
 										<a>
 											<img class="mui-media-object mui-pull-left" src="../images/head1.png">
-											<div class="mui-media-body">
-												ECIZEP 开始关注 <strong>eminem</strong><span>1小时前</span>
+											<div class="mui-media-body oneline">
+												ECIZEP 开始关注了你
+												<span class="mui-pull-right time">1小时前</span>
 											</div>
 										</a>
 									</li>
-									<!--<li class="mui-table-view-cell mui-media">
-										<a href="javascript:;">
-											<img class="mui-media-object mui-pull-left" src="../images/head2.jpg">
-											<div class="mui-media-body">
-												sumecat 赞了3个动态<span>6天前</span>
+									<li class="mui-table-view-cell mui-media">
+										<a>
+											<img class="mui-media-object mui-pull-left" src="../images/yyy.jpg">
+											<div class="mui-media-body">~biu 赞了你 <span class="mui-pull-right time">3个小时前</span>
+												<p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
 											</div>
 										</a>
-									</li>-->
+									</li>
 								</ul>
-							</div>
-						</div>
-					</div>
-					<div id="item3mobile" class="mui-slider-item mui-control-content">
-						<div id="scroll3" class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<div class="mui-loading">
-									<div class="mui-spinner">
-										
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -253,16 +244,14 @@
 			});
 		
 			
-			var html1 = '<ul class="mui-table-view"><li class="mui-table-view-cell">第二个选项卡子项-1</li><li class="mui-table-view-cell">第二个选项卡子项-2</li><li class="mui-table-view-cell">第二个选项卡子项-3</li><li class="mui-table-view-cell">第二个选项卡子项-4</li><li class="mui-table-view-cell">第二个选项卡子项-5</li></ul>';
-			var html3 = '<ul class="mui-table-view"><li class="mui-table-view-cell mui-media"><a href="javascript:;"><img class="mui-media-object mui-pull-left" src="../images/head.jpg"><div class="mui-media-body">cindy_mz 赞了你 <span>3个小时前</span><p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p></div></a></li> <li class="mui-table-view-cell mui-media"><a href="javascript:;"><img class="mui-media-object mui-pull-left" src="../images/head1.png"><div class="mui-media-body">ECIZEP评论了 <span>一天前</span><p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖</p></div></a></li><li class="mui-table-view-cell mui-media"><a href="javascript:;"><img class="mui-media-object mui-pull-left" src="../images/head2.jpg"><div class="mui-media-body">sumecat评论了 <span>一天前</span><p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般</p></div></a></li></ul>';
-			var item3 = document.getElementById('item3mobile');
+			var item2 = document.getElementById('item2mobile');
 			document.getElementById('slider').addEventListener('slide', function(e) {
-				if(e.detail.slideNumber === 1) {
-					if(item3.querySelector('.mui-loading')) {
+				if(e.detail.slideNumber === 2) {
+					/*if(item2.querySelector('.mui-loading')) {
 						setTimeout(function() {
 							item3.querySelector('.mui-scroll').innerHTML = html3;
 						}, 500);
-					}
+					}*/
 				}
 			});
 			
