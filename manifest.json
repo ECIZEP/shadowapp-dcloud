@@ -227,7 +227,8 @@
 					"js/mui.view.js",
 					"images/head1.png",
 					"js/wilddogData.js",
-					"images/lpc.jpg"
+					"images/lpc.jpg",
+					"images/logo.png"
 				],
 				"refer": [
 					"htmls/edit_account.html",
@@ -427,7 +428,8 @@
 					"js/wilddogData.js",
 					"images/lpc.jpg",
 					"images/cj.jpg",
-					"images/yyy.jpg"
+					"images/yyy.jpg",
+					"images/logo.png"
 				],
 				"refer": [
 					"htmls/edit_account.html",

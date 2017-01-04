@@ -71,7 +71,13 @@
 				reg.addEventListener('tap',function(){
 					wilddogData.wirteData("/account_board",accountObj.value,{
 						"password": password.value,
-						"email": email.value
+						"email": email.value,
+						"personal": "未设置",
+						"gender":"男",
+						"photoUrl":"../images/logo.png",
+						"follow":{
+							"jueqi199":"",
+						}
 					});
 					plus.nativeUI.toast("您成功注册了一个账户！");
 					mui.back();

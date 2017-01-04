@@ -82,10 +82,10 @@
 		    <ul class="mui-table-view">
 				<li id="account-click" class="mui-table-view-cell">
 				    <a class="mui-navigate-right">
-						<img class="mui-media-object mui-pull-left head-img" id="head-img" src="../images/user.png">
+						<img class="mui-media-object mui-pull-left head-img" id="head-img" >
 						<div class="mui-media-body" id="account-info">
-							ECIZEP
-							<p class="mui-ellipsis">账号:jueqi199</p>
+							
+							<p class="mui-ellipsis"></p>
 						</div>
 					</a>
 				</li>	    
@@ -202,13 +202,28 @@
 				
 				//更新用户信息，存储到本地
 				function updateInfo(data){
-					plus.storage.setItem('gender',data.gender);
-					plus.storage.setItem('email',data.email);
-					plus.storage.setItem('photoUrl',data.photoUrl);
-					plus.storage.setItem('nickname',data.nickname);
-					plus.storage.setItem('personal',data.personal);
-					plus.storage.setItem('follow',Object.keys(data.follow).join("_"));
-					plus.storage.setItem('followed',Object.keys(data.followed).join("_"));
+					if(data.gender){
+						plus.storage.setItem('gender',data.gender);
+					}
+					if(data.email){
+						plus.storage.setItem('email',data.email);
+					}
+					if(data.nickname){
+						plus.storage.setItem('nickname',data.nickname);
+					}
+					if(data.photoUrl){
+						plus.storage.setItem('photoUrl',data.photoUrl);
+					}
+					if(data.personal){
+						plus.storage.setItem('personal',data.personal);
+					}
+					if(data.follow){
+						plus.storage.setItem('follow',Object.keys(data.follow).join("_"));
+					}
+					if(data.followed){
+						plus.storage.setItem('followed',Object.keys(data.followed).join("_"));
+					}
+					
 				}
 				
 				//关注页面预加载
