@@ -5,7 +5,8 @@
 		<title>one</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../css/icomoon.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/mui-icons-extra.css"/>
+		<link rel="stylesheet" href="../css/post.css" />
 		<style type="text/css">
 		
 			/*头部nav样式*/
@@ -38,84 +39,6 @@
 			    padding-bottom: 5px;
 			}
 			
-			
-			/*post样式*/
-			.post-wrapper{
-				background: #FFFFFF;
-				text-align: initial;
-				top: 44px;
-			}
-			
-			.state-normal{
-				background-color: #FFFFFF;
-				color: #565656;
-			}
-
-			.state-bad{
-				background-color: #2D3642;
-				color: white;
-			}
-			
-			.state-happy{
-				background-color: #ef8d8a;
-				color: white;
-			}
-			
-			.post-cell{
-				position: relative;
-				padding: 20px 15px;
-			}
-			
-			.post-header{
-				height: 40px;
-			}
-			
-			.post-header img{
-				height: 40px;
-				width: 40px;
-				border-radius: 50%;
-				vertical-align: top;
-				position: relative;
-			}
-			
-			.post-header .post-info{
-				padding-left: 10px;
-				display: inline-block;
-				
-			}
-			.post-info span{
-				height: 18px;
-				padding: 0px;
-				margin: 0px;
-				font-size: 14px;
-				display: block;
-			}
-			
-			.post-info span:first-child{
-				margin-bottom: 4px;
-			}
-			
-			.post-content{
-				padding: 15px 0px;
-				font-size: 15px;
-			}
-			
-			.post-comment{
-				height: 25px;
-				font-size: 14px;
-				line-height: 170%;
-				
-			}
-			
-			
-			.post-comment span{
-				padding: 0px 10px;
-				font-size: 20px;
-			}
-			
-			.post-comment span:first-of-type{
-				padding-left: 0px;
-			}
 			.more{
 				position: absolute;
 				top: 15px;
@@ -123,12 +46,29 @@
 				font-size: 30px;
 				opacity: 0.8;
 			}
+			
+			#addpost{
+				position: fixed;
+				z-index: 3;
+				bottom: 30px;
+				right: 20px;
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				background-color: #fff;
+				color: #008feb;
+				text-align: center;
+				padding-top: 12px;
+				box-shadow: 0 0 10px rgba(0,0,0,.15);
+				transition: bottom 0.4s ease-in-out;
+				-webkit-transition: bottom 0.4s ease-in-out;
+			}
 		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav bar-nav">
-		    <h1 id="title" class="mui-title mui-text-left my-title ">暗面</h1>
+		    <h1 id="title" class="mui-title mui-text-left my-title">暗面</h1>
 		    <div class="myicon white-color mui-pull-right">
 		    	<a href="#addPopover" id="openPopover"><span class="mui-icon mui-icon-plusempty white-color"></span></a>
 		    </div>
@@ -152,10 +92,32 @@
 							还是人傻一点好，简简单单的多好<br/>
 							做人真不能像我
 						</div>
-						<div class="post-comment">
-							<span class="icon-star-empty"></span>12
-							<span class="icon-eye"></span>14
+						<div class="post-action">
+							浏览<span>12</span>次
+							<div class="mui-pull-right">
+								<span class="mui-icon-extra mui-icon-extra-heart" style="font-size: 20px;padding-top: 4px;"></span>
+								<span class="mui-icon mui-icon-chatbubble"></span>
+							</div>
 							
+						</div>
+						<div class="post-comment">
+							<span class="mui-icon-extra mui-icon-extra-heart-filled" style="font-size: 14px;"></span>
+							<ul class="likeList">
+								<li><a href="#" class="userLink">ecizep</a></li>
+								<li><a href="#" class="userLink">cindy</a></li>
+								<li><a href="#" class="userLink">zhuce</a></li>
+							</ul>
+							<ul class="conmentList">
+								<li>
+									<a href="#" class="userLink">ecizep</a>
+									速度快了解放路口
+								</li>
+								<li>
+									<a href="#" class="userLink">zhuce</a>
+									<a href="#" >@cindy</a>
+									是打飞机大家快来
+								</li>
+							</ul>
 						</div>
 					</div>
 					<div class="post-cell state-bad">
@@ -175,10 +137,32 @@
 							头晕晕的 可我就是没倒 <br/>
 							我也不知道我能坚持多久 又累又痛的					
 						</div>
-						<div class="post-comment">
-							<span class="icon-star-empty"></span>12
-							<span class="icon-eye"></span>14
+						<div class="post-action">
+							浏览<span>12</span>次
+							<div class="mui-pull-right">
+								<span class="mui-icon-extra mui-icon-extra-heart" style="font-size: 20px;padding-top: 4px;"></span>
+								<span class="mui-icon mui-icon-chatbubble"></span>
+							</div>
 							
+						</div>
+						<div class="post-comment">
+							<span class="mui-icon-extra mui-icon-extra-heart-filled" style="font-size: 14px;"></span>
+							<ul class="likeList">
+								<li><a href="#" class="userLink">ecizep</a></li>
+								<li><a href="#" class="userLink">cindy</a></li>
+								<li><a href="#" class="userLink">zhuce</a></li>
+							</ul>
+							<ul class="conmentList">
+								<li>
+									<a href="#" class="userLink">ecizep</a>
+									速度快了解放路口
+								</li>
+								<li>
+									<a href="#" class="userLink">zhuce</a>
+									<a href="#" >@cindy</a>
+									是打飞机大家快来
+								</li>
+							</ul>
 						</div>
 					</div>
 					<div class="post-cell state-happy">
@@ -198,15 +182,40 @@
 							头晕晕的 可我就是没倒 <br/>
 							我也不知道我能坚持多久 又累又痛的					
 						</div>
-						<div class="post-comment">
-							<span class="icon-star-empty"></span>12
-							<span class="icon-eye"></span>14
+						<div class="post-action">
+							浏览<span>12</span>次
+							<div class="mui-pull-right">
+								<span class="mui-icon-extra mui-icon-extra-heart" style="font-size: 20px;padding-top: 4px;"></span>
+								<span class="mui-icon mui-icon-chatbubble"></span>
+							</div>
 							
+						</div>
+						<div class="post-comment">
+							<span class="mui-icon-extra mui-icon-extra-heart-filled" style="font-size: 14px;"></span>
+							<ul class="likeList">
+								<li><a href="#" class="userLink">ecizep</a></li>
+								<li><a href="#" class="userLink">cindy</a></li>
+								<li><a href="#" class="userLink">zhuce</a></li>
+							</ul>
+							<ul class="conmentList">
+								<li>
+									<a href="#" class="userLink">ecizep</a>
+									速度快了解放路口
+								</li>
+								<li>
+									<a href="#" class="userLink">zhuce</a>
+									<a href="#" >@cindy</a>
+									是打飞机大家快来
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 			
+		</div>
+		<div id="addpost">
+			<span class="mui-icon mui-icon-compose"></span>
 		</div>
 		<div id="addPopover" class="mui-popover">
 			<div class="mui-popover-arrow"></div>
@@ -235,7 +244,75 @@
 					//mui.fire(mainPage,'hidebar');
 				},false);
 				
+				mui(".mui-icon-chatbubble").each(function(){
+					this.addEventListener("tap", function(){
+						mui.openWindow({
+							url: "post_comment.html",
+							id: "post_comment.html"
+						});
+					}, false);
+				});
+				
+				document.getElementById('addpost').addEventListener("tap", function(){
+					mui.openWindow({
+						url: "compose.html",
+						id: "compose.html"
+					});
+				}, false);
+				
+				
 			});
+			
+			
+			(function(){
+				//addpost floatingActionBar
+				mui('.post-wrapper')[0].addEventListener("touchstart", function(event){
+					touch(event);
+				}, false);
+				
+				mui('.post-wrapper')[0].addEventListener("touchend", function(event){
+					touch(event, slideupHandle, slidedownHandle);
+				}, false);
+				
+				var startX,startY,endX,endY;
+				
+				function slideupHandle(){
+					document.getElementById('addpost').style.bottom = "30px";
+				}
+				
+				function slidedownHandle(){
+					document.getElementById('addpost').style.bottom = "-50px";
+				}
+				
+				function touch (event, slideupHandle, slidedownHandle){  
+			        var event = event || window.event;
+			        switch(event.type){  
+			            case "touchstart":
+			            	startX = event.touches[0].clientX;
+			            	startY = event.touches[0].clientY;
+			                break;  
+			            case "touchend":
+			            	endX = event.changedTouches[0].clientX;
+			            	endY = event.changedTouches[0].clientY;
+			            	//上滑显示
+			            	if(endY - startY > 3){
+			            		var radius = (endY - startY)/(endX - startX);
+			            		if(radius > 1 || radius < -1){
+			            			slideupHandle();
+			            		}
+			            	}else if(startY - endY > 3){
+			            		//下滑隐藏
+			            		var radius = (endY - startY)/(endX - startX);
+			            		if(radius > 1 || radius < -1){
+			            			slidedownHandle();
+			            		}
+			            	}
+			                break;    
+			        }  
+			          
+			    }
+			})()
+			
 			
 		</script>
 	</body>

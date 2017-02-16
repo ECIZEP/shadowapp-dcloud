@@ -6,6 +6,7 @@
     <title>暗面Demo</title>
     
     <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/mui-icons-extra.css" />
     <style type="text/css">
     	.bar-nav{
     		background: #444;
@@ -16,8 +17,8 @@
 	    }
 	    
 	    .mui-bar{
-	    	-webkit-box-shadow: 0 0 6px #ddd; 
-    		box-shadow: 0 0 6px #ddd; 
+	    	-webkit-box-shadow: 0 0 10px #ddd; 
+    		box-shadow: 0 0 10px #ddd; 
 	    }
 	    
 	    .mui-bar-tab{
@@ -66,7 +67,7 @@
 	        <span class="mui-tab-label">探索</span>
 	    </a>
 	    <a index="three.html" class="mui-tab-item" >
-	        <span class="mui-icon mui-icon-email"></span>
+	        <span class="mui-icon mui-icon-extra mui-icon-extra-notice" style="font-size: 22px;"></span>
 	        <span class="mui-tab-label">通知</span>
 	    </a>
 	    <a index="four.html" id="setting" class="mui-tab-item" >
@@ -130,7 +131,7 @@
 			}
 			
 			if(targetTab == "three.html"){
-				mui(".mui-icon-email")[0].setAttribute('class','mui-icon mui-icon-email');
+				mui(".mui-icon-extra-notice")[0].setAttribute('class','mui-icon mui-icon-extra mui-icon-extra-notice');
 			}
 			
 			//更换标题
@@ -178,12 +179,12 @@
 		
 		window.addEventListener("newMes",function(){
 			if(activeTab != "three.html"){
-				mui(".mui-icon-email")[0].setAttribute('class','mui-icon mui-icon-email unread');
+				mui(".mui-icon-extra-notice")[0].setAttribute('class','mui-icon mui-icon-extra mui-icon-extra-notice unread');
 			}
 		},false);
 		
 		window.addEventListener('clearMes',function(){
-			mui(".mui-icon-email")[0].setAttribute('class','mui-icon mui-icon-email');
+			mui(".mui-icon-extra-notice")[0].setAttribute('class','mui-icon mui-icon-extra mui-icon-extra-notice');
 		},false);
      	
   

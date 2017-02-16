@@ -99,7 +99,15 @@
 			"css/mui.min.css",
 			"js/mui.min.js",
 			"fonts/mui.ttf",
-			"images/head1.png"
+			"images/head1.png",
+			"fonts/mui-icons-extra.ttf",
+			"css/mui-icons-extra.css",
+			"htmls/post_comment.html",
+			"css/post.css"
+		],
+		"refer": [
+			"htmls/post_comment.html",
+			"htmls/compose.html"
 		]
 	},
 	"htmls/three.html": {
@@ -138,7 +146,9 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"js/mui.min.js",
-			"htmls/three.html"
+			"htmls/three.html",
+			"fonts/mui-icons-extra.ttf",
+			"css/mui-icons-extra.css"
 		],
 		"refer": [
 			"htmls/three.html",
@@ -201,7 +211,8 @@
 			"fonts/mui.ttf",
 			"images/cj.jpg",
 			"images/lpc.jpg",
-			"images/yyy.jpg"
+			"images/yyy.jpg",
+			"images/logo.png"
 		]
 	},
 	"htmls/profile.html": {
@@ -217,11 +228,42 @@
 			"images/lpc.jpg",
 			"images/cj.jpg",
 			"images/yyy.jpg",
-			"images/logo.png"
+			"images/logo.png",
+			"css/post.css",
+			"css/mui-icons-extra.css",
+			"fonts/mui-icons-extra.ttf",
+			"js/common.js",
+			"js/post.js"
 		],
 		"refer": [
 			"htmls/edit_account.html",
-			"htmls/chat.html"
+			"htmls/chat.html",
+			"htmls/followed.html",
+			"htmls/follow.html",
+			"htmls/post_comment.html"
+		]
+	},
+	"htmls/post_comment.html": {
+		"resources": [
+			"images/head2.jpg",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/wilddogData.js",
+			"js/wilddog.js",
+			"images/cj.jpg",
+			"images/head1.png",
+			"images/lpc.jpg"
+		]
+	},
+	"htmls/compose.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/angry.png",
+			"images/relaxed.png",
+			"images/confused.png"
 		]
 	}
 }

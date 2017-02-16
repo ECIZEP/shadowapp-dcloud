@@ -91,7 +91,9 @@
 		<script src="https://cdn.wilddog.com/sdk/js/2.3.9/wilddog.js"></script>
 		<script src="../js/wilddogData.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			mui.init();
+			mui.init({
+				swipeBack:true
+			});
 			
 			function containElement(followNames,account){
 				for(var i = 0;i < followNames.length;i++){
@@ -102,10 +104,10 @@
 				return false;
 			}
 			
-			window.addEventListener('loadFollows', function(event) {
-					//获得事件参数 用户的account
-					console.log("follow preload");
-					var account = event.detail.account;
+
+			mui.plusReady(function() {
+				loadLists(plus.webview.currentWebview().account);
+				function loadLists(account){
 					//根据account向服务器请求用户数据
 					var lists = document.getElementById('lists');
 					lists.innerHTML = "";
@@ -119,13 +121,13 @@
 									innerHTML = innerHTML + "<li class='mui-table-view-cell mui-media' data-account = '" + account + "'><a><img class='mui-media-object mui-pull-left' src='";
 									innerHTML = innerHTML + data.photoUrl + "'><div class='mui-media-body' data-photourl = '" + data.photoUrl + "' data-account = '" + account + "'>" + data.nickname;
 									//如果这个人用户关注了，显示已关注
-									if(containElement(followNames,account)){
+									if(containElement(followNames, account)) {
 										innerHTML = innerHTML + "</div><button type='button' class='mui-btn'>已关注</button></a></li>";
-									//这个人是用户自己，不显示
-									}else if(account == plus.storage.getItem('account')){
+										//这个人是用户自己，不显示
+									} else if(account == plus.storage.getItem('account')) {
 										innerHTML = innerHTML + "</div></a></li>";
-									//这个人用户没有关注，显示关注按钮
-									}else{
+										//这个人用户没有关注，显示关注按钮
+									} else {
 										innerHTML = innerHTML + "</div><button type='button' class='mui-btn mui-btn-primary'>关注</button></a></li>";
 									}
 									lists.innerHTML = lists.innerHTML + innerHTML;
@@ -133,14 +135,9 @@
 							}(elementNames[i]));
 						}
 					});
-				});
-			
-			mui.plusReady(function() {
-				
-				
-				
-				function unfollowAccount(account){
-					//修改本地follow
+				}
+
+				function unfollowAccount(account) {//修改本地follow
 					console.log(plus.storage.getItem('follow'));
 					var followBefore = plus.storage.getItem('follow').split("_");
 					var index = followBefore.indexOf(account);
@@ -154,8 +151,6 @@
 					//更新tab four页面
 					var fourPage = plus.webview.getWebviewById("four.html");
 					mui.fire(fourPage,"updateLength");
-					plus.storage.setItem('otherfollow','1');
-					plus.storage.setItem('otherfollowed','1');
 				}
 				
 				function followAccount(account){
@@ -171,8 +166,6 @@
 					//更新tab four页面
 					var fourPage = plus.webview.getWebviewById("four.html");
 					mui.fire(fourPage,"updateLength");
-					plus.storage.setItem('otherfollow','1');
-					plus.storage.setItem('otherfollowed','1');
 				}
 				
 				//给列表添加点击事件

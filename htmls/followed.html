@@ -71,7 +71,9 @@
 		<script src="https://cdn.wilddog.com/sdk/js/2.3.9/wilddog.js"></script>
 		<script src="../js/wilddogData.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			mui.init();
+			mui.init({
+				swipeBack:true
+			});
 			
 			function containElement(followNames,account){
 				for(var i = 0;i < followNames.length;i++){
@@ -82,11 +84,11 @@
 				return false;
 			}
 			
-			window.addEventListener('loadFolloweds', function(event) {
-					//获得事件参数 用户的account
-					console.log("followed preload" + event.detail.account);
-					var account = event.detail.account;
-					//根据account向服务器请求用户数据
+			mui.plusReady(function() {
+				
+				loadLists(plus.webview.currentWebview().account);
+				
+				function loadLists(account){
 					var lists = document.getElementById('lists');
 					lists.innerHTML = "";
 					wilddogData.getData("/account_board/" + account, function(data) {
@@ -114,11 +116,7 @@
 							}(followedNames[i]));
 						}
 					});
-				});
-			
-			
-			mui.plusReady(function() {
-				
+				}
 				
 				function unfollowAccount(account){
 					//修改本地follow

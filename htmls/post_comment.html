@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-bar{
+				background-color: #2D3642;
+			}
+			
+			.mui-bar .mui-pull-left{
+				color: white;
+			}
+	    	
+	    	.mui-bar .my-title{
+	    		color: white;
+	    	}
+	    	
+	    	.mui-bar-nav {
+			    -webkit-box-shadow: 0 1px 10px #777474;
+			    box-shadow: 0 1px 10px #777474;
+			}
+			
+			footer {
+				position: fixed;
+				width: 100%;
+				height: 50px;
+				min-height: 50px;
+				border-top: solid 1px #ccc;
+				left: 0px;
+				bottom: 0px;
+				overflow: hidden;
+				padding: 0px 50px 0px 5px;
+				background-color: #fafafa;
+			}
+
+			.footer-right {
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				right: 0px;
+				bottom: 0px;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 100%;
+				padding: 10px 5px;
+				display: inline-block;
+			}
+			.footer-center {
+				height: 100%;
+				padding: 5px 0px;
+			}
+			.footer-center [class*=input] {
+				width: 100%;
+				height: 100%;
+				border-radius: 5px;
+			}
+			.footer-center .input-text {
+				background: #fff;
+				border: solid 1px #ddd;
+				padding: 10px !important;
+				font-size: 16px !important;
+				line-height: 18px !important;
+				font-family: verdana !important;
+				overflow: hidden;
+			}
+			
+			
+			.content-wrap{
+				top: 45px;
+				bottom: 50px;
+				color: #565656;
+				font-size: 14px;
+			}
+			.mui-table-view-cell{
+				padding: 10px;
+			}
+			
+			.comment-img{
+				border-radius: 50%;
+				height: 45px;
+				width: 45px;
+				float: left;
+				margin-right: 10px;
+			}
+			
+			.comment-content{
+				overflow: hidden;/*bfc*/
+				padding-top: 8px;
+			}
+			
+			.comment-reply{
+				float: right;
+				margin-left: 10px;
+				margin-top: 7px;
+				text-align: center;
+			}
+			
+			/*.comment-time{
+				display: block;
+			}*/
+			
+			.userLink{
+				font-weight: bold;
+				color: #565656;
+				margin-right: 5px;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title mui-text-left my-title">评论</h1>
+		</header>
+		<div class="mui-content">
+			<div class="content-wrap mui-scroll-wrapper">	
+				<div class="mui-scroll">
+					<ul id="commentList" class="mui-table-view">
+						<!--<li class="mui-table-view-cell">
+							<img class="comment-img" src="../images/head2.jpg"/>
+							<div class="comment-reply">
+								<span class="mui-icon mui-icon-chatbubble"></span>
+								<span class="comment-time">12:35</span>
+							</div>
+							<div class="comment-content">
+								<a href="#" class="userLink">sumuze</a>哈哈哈哈，给大佬递茶富商大贾的分公司电饭锅
+							</div>
+						</li>-->
+					</ul>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<div class="footer-center">
+				<textarea id='msg-text' type="text" placeholder="输入评论..." class='input-text' href="#bottom" ></textarea>
+			</div>
+			<label  class="footer-right">
+				<i id='msg-send' class="mui-icon mui-icon-paperplane" style="font-size: 30px;"></i>
+			</label>
+		</footer>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/wilddog.js" ></script>
+		<script type="text/javascript" src="../js/wilddogData.js" ></script>
+		<script type="text/javascript">
+			mui.init();
+			mui('.mui-scroll-wrapper').scroll({
+				indicators: false //是否显示滚动条
+			});
+			mui.plusReady(function(){
+				var self = plus.webview.currentWebview();
+				wilddogData.getData("/posts_board/" + self.username + "/" + self.postId, function(data){
+					if(data.comments){
+						commentKeys = Object.keys(data.comments);
+						for (var i = 0;i < commentKeys.length;i++){
+							wilddogData.getData("/account_board/" + commentKeys[i], function(content, account){
+								return function(data){
+									var commentHtml = '<li class="mui-table-view-cell"><img class="comment-img" src="' + data.photoUrl + '"/>';
+									commentHtml = commentHtml + '<div class="comment-reply"><span class="mui-icon mui-icon-chatbubble"></span></div>'
+									commentHtml = commentHtml + '<div class="comment-content"><a href="javascript:;" class="userLink" data-username="' + account + '">';
+									commentHtml = commentHtml + data.nickname + "</a>" + content + "</div></li>";
+									var list = document.getElementById('commentList');
+									list.innerHTML = list.innerHTML + commentHtml;
+								};
+							}(data.comments[commentKeys[i]], commentKeys[i]));
+						}
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

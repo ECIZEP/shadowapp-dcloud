@@ -181,10 +181,8 @@
 					accountInfo.addEventListener("tap",function(){
 						mui.openWindow({
 							url: 'profile.html',
-							id:"htmls/" + account,
+							id:"profile_" + account,
 							extras:{
-								followLength:followLength,
-								followedLength:followedLength,
 								account:account
 							}
 						});
@@ -196,8 +194,10 @@
 					plus.storage.setItem("isLogin","0");
 					mui.openWindow({
 						url:"login_reg.html",
-						id:"htmls/login_reg.html"				
+						id:"htmls/login_reg.html"
 					});
+					plus.webview.getWebviewById('htmls/main.html').close();
+					plus.webview.getWebviewById('htmls/login_reg.html').show();
 				},false);
 				
 				//更新用户信息，存储到本地
@@ -226,55 +226,25 @@
 					
 				}
 				
-				//关注页面预加载
-			    var followpage = mui.preload({
-			    	url: 'follow.html',
-			        id: 'htmls/follow.html'
-			    });
-			    //关注页面预加载数据
-			    mui.fire(followpage, 'loadFollows',{
-				   	account:account
-				});
-			    followpage.addEventListener('loaded',function () {
-				   console.log("follow run");
-				},false);
 				//关注添加事件跳转
 				document.getElementById('followTable').addEventListener('tap', function() {
-					//follow页面的数据被改变过
-					if(plus.storage.getItem('otherfollow') == '1'){
-			    		mui.fire(followpage, 'loadFollows',{
-					    	account:account
-					    });
-					    plus.storage.setItem('otherfollow','0');
-			    	}
 					mui.openWindow({
-						id: "htmls/follow.html"
+						url: 'follow.html',
+						id: "htmls/follow.html",
+						extras:{
+							account:account
+						}
 					});
 				}, false);
 				
-				//粉丝页面预加载
-			    var followedpage = mui.preload({
-			    	url: 'followed.html',
-			        id: 'htmls/followed.html'
-			    });
-			    //粉丝页面预加载数据
-			    mui.fire(followedpage, 'loadFolloweds',{
-				    account:account
-				});
-			    followedpage.addEventListener('loaded',function () {
-				    console.log("followed run");
-				},false);
 				//粉丝添加事件跳转
 				document.getElementById('followedTable').addEventListener('tap', function() {
-					//followed页面的数据被改变过
-					if(plus.storage.getItem('otherfollowed') == '1'){
-			    		mui.fire(followedpage, 'loadFolloweds',{
-					    	account:account
-					    });
-					    plus.storage.setItem('otherfollowed','0');
-			    	}
 					mui.openWindow({
-						id: "htmls/followed.html"
+						url: 'followed.html',
+						id: "htmls/followed.html",
+						extras:{
+							account:account
+						}
 					});
 				}, false);
 				

@@ -1,0 +1,132 @@
+/*post样式*/
+
+.post-wrapper {
+	background: #FFFFFF;
+	text-align: initial;
+	top: 44px;
+}
+
+.state-normal {
+	background-color: #FFFFFF;
+	color: #565656;
+}
+
+.state-normal .post-comment a.userLink {
+	color: #565656;
+}
+
+.state-bad {
+	background-color: #2D3642;
+	color: white;
+}
+
+.state-bad .post-comment a.userLink {
+	color: white;
+}
+
+.state-happy {
+	background-color: #ef8d8a;
+	color: white;
+}
+
+.state-happy .post-comment a.userLink {
+	color: white;
+}
+
+.post-cell {
+	position: relative;
+	padding: 20px 15px;
+}
+
+.post-header {
+	height: 40px;
+}
+
+.post-header img {
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	vertical-align: top;
+	position: relative;
+}
+
+.post-header .post-info {
+	padding-left: 10px;
+	display: inline-block;
+}
+
+.post-info span {
+	height: 18px;
+	padding: 0px;
+	margin: 0px;
+	font-size: 14px;
+	display: block;
+}
+
+.post-info span:first-child {
+	margin-bottom: 4px;
+}
+
+.post-content {
+	padding: 15px 0px;
+	font-size: 15px;
+}
+
+.post-action {
+	height: 25px;
+	font-size: 14px;
+	line-height: 170%;
+}
+
+.post-action span {
+	vertical-align: top;
+	padding-left: 10px;
+}
+
+.post-comment {
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.post-action span:first-of-type {
+	padding-left: 0px;
+}
+
+.post-comment .likeList {
+	display: inline;
+	padding-left: 3px;
+}
+
+li {
+	list-style: none;
+}
+
+.post-comment .likeList li {
+	display: inline;
+}
+
+.post-comment .likeList li:after {
+	content: "、";
+}
+
+.post-comment .likeList li:last-child:after {
+	content: "";
+}
+
+.userLink {
+	font-weight: bold;
+}
+
+.conmentList {
+	margin: 0px;
+	padding: 0px;
+	font-size: 14px;
+}
+
+.conmentList li a.userLink:after {
+	content: " ";
+}
+
+.post-action .mui-icon-extra-heart-filled{
+	color: orangered;
+}
