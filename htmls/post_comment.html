@@ -156,7 +156,11 @@
 					if(data.comments){
 						commentKeys = Object.keys(data.comments);
 						for (var i = 0;i < commentKeys.length;i++){
-							wilddogData.getData("/account_board/" + commentKeys[i], function(content, account){
+							var last = false;
+							if(i == commentKeys.length - 1){
+								last = true;
+							}
+							wilddogData.getData("/account_board/" + commentKeys[i], function(content, account, last){
 								return function(data){
 									var commentHtml = '<li class="mui-table-view-cell"><img class="comment-img" src="' + data.photoUrl + '"/>';
 									commentHtml = commentHtml + '<div class="comment-reply"><span class="mui-icon mui-icon-chatbubble"></span></div>'
@@ -164,11 +168,38 @@
 									commentHtml = commentHtml + data.nickname + "</a>" + content + "</div></li>";
 									var list = document.getElementById('commentList');
 									list.innerHTML = list.innerHTML + commentHtml;
+									if(last){
+										mui('.comment-reply').each(function(){
+											this.addEventListener('tap', function(event){
+												event.stopPropagation();
+												event.detail.gesture.preventDefault();
+												var text = document.getElementById('msg-text');
+												text.value = "@" + this.nextSibling.getElementsByTagName('a')[0].innerHTML + " ";
+												text.focus();
+											}, false);
+										});
+									}
 								};
-							}(data.comments[commentKeys[i]], commentKeys[i]));
+							}(data.comments[commentKeys[i]], commentKeys[i], last));
 						}
 					}
 				});
+				document.getElementById('msg-send').addEventListener('tap', function(){
+					var commentContent = document.getElementById('msg-text').value;
+					if(commentContent == ""){
+						mui.toast("请输入评论内容");
+					}else{
+						wilddogData.wirteData("/posts_board/" + self.username + "/" + self.postId + "/comments", plus.storage.getItem('account'), commentContent);
+						var list = document.getElementById('commentList');
+						var commentHtml = '<li class="mui-table-view-cell"><img class="comment-img" src="' + plus.storage.getItem('photoUrl') + '"/>';
+						commentHtml = commentHtml + '<div class="comment-reply"><span class="mui-icon mui-icon-chatbubble"></span></div>'
+						commentHtml = commentHtml + '<div class="comment-content"><a href="javascript:;" class="userLink" data-username="' + plus.storage.getItem('account') + '">';
+						commentHtml = commentHtml + plus.storage.getItem('nickname') + "</a>" + commentContent + "</div></li>";
+						list.innerHTML = list.innerHTML + commentHtml;
+						document.getElementById('msg-text').value = "";
+					}
+				}, false);
+				
 			});
 		</script>
 	</body>

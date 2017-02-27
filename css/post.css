@@ -1,7 +1,11 @@
 /*post样式*/
 
+.mui-icon:active,.mui-icon-extra:active{
+    opacity: .3;
+}
+
 .post-wrapper {
-	background: #FFFFFF;
+	background: #efeff4;
 	text-align: initial;
 	top: 44px;
 }

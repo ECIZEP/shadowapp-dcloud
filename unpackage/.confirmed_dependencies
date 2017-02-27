@@ -1,269 +1,269 @@
 {
-	"index.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"htmls/one.html",
-			"htmls/two.html",
-			"js/mui.js",
-			"js/wilddog.js",
-			"js/wilddogData.js"
-		],
-		"refer": [
-			"htmls/three.html",
-			"htmls/four.html",
-			"htmls/one.html",
-			"htmls/two.html",
-			"htmls/login_reg.html",
-			"htmls/register.html",
-			"htmls/index.html",
-			"htmls/main.html"
-		]
-	},
-	"htmls/four.html": {
-		"resources": [
-			"images/user.png",
-			"htmls/login_reg.html",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/mui.view.js",
-			"images/head1.png",
-			"js/wilddogData.js",
-			"images/lpc.jpg",
-			"images/logo.png"
-		],
-		"refer": [
-			"htmls/login_reg.html",
-			"htmls/edit_account.html",
-			"htmls/follow.html",
-			"htmls/followed.html",
-			"htmls/profile.html"
-		]
-	},
-	"login.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css"
-		]
-	},
-	"htmls/two.html": {
-		"refer": [
-			"login.html",
-			"htmls/login.html",
-			"htmls/register.html"
-		],
-		"resources": [
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"fonts/mui.ttf"
-		]
-	},
-	"htmls/login.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css"
-		]
-	},
-	"htmls/register.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/wilddogData.js"
-		]
-	},
-	"htmls/login_reg.html": {
-		"refer": [
-			"htmls/login.html",
-			"htmls/register.html",
-			"htmls/four.html",
-			"htmls/main.html"
-		],
-		"resources": [
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"htmls/four.html",
-			"js/wilddogData.js",
-			"fonts/mui.ttf"
-		]
-	},
-	"htmls/one.html": {
-		"resources": [
-			"fonts/icomoon.ttf",
-			"css/icomoon.css",
-			"images/head.jpg",
-			"css/mui.min.css",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"images/head1.png",
-			"fonts/mui-icons-extra.ttf",
-			"css/mui-icons-extra.css",
-			"htmls/post_comment.html",
-			"css/post.css"
-		],
-		"refer": [
-			"htmls/post_comment.html",
-			"htmls/compose.html"
-		]
-	},
-	"htmls/three.html": {
-		"resources": [
-			"images/head1.png",
-			"images/head2.jpg",
-			"images/head.jpg",
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"images/lpc.jpg",
-			"js/wilddogData.js",
-			"images/cj.jpg",
-			"images/yyy.jpg"
-		],
-		"refer": [
-			"htmls/chat.html"
-		]
-	},
-	"htmls/index.html": {
-		"resources": [
-			"htmls/one.html",
-			"fonts/mui.ttf",
-			"js/mui.min.js",
-			"css/mui.min.css"
-		],
-		"refer": [
-			"htmls/three.html",
-			"htmls/four.html",
-			"htmls/one.html",
-			"htmls/two.html"
-		]
-	},
-	"htmls/main.html": {
-		"resources": [
-			"htmls/one.html",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/mui.min.js",
-			"htmls/three.html",
-			"fonts/mui-icons-extra.ttf",
-			"css/mui-icons-extra.css"
-		],
-		"refer": [
-			"htmls/three.html",
-			"htmls/four.html",
-			"htmls/one.html",
-			"htmls/two.html"
-		]
-	},
-	"htmls/edit_account.html": {
-		"resources": [
-			"css/mui.min.css",
-			"images/head1.png",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"js/wilddogData.js",
-			"images/logo.png",
-			"images/lpc.jpg"
-		]
-	},
-	"htmls/follow.html": {
-		"resources": [
-			"css/mui.min.css",
-			"images/head1.png",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"images/head2.jpg",
-			"images/head.jpg",
-			"js/wilddogData.js",
-			"images/cj.jpg",
-			"images/lpc.jpg",
-			"images/yyy.jpg"
-		],
-		"refer": [
-			"htmls/chat.html",
-			"htmls/profile.html"
-		]
-	},
-	"htmls/chat.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"fonts/mui.ttf",
-			"js/arttmpl.js",
-			"js/wilddogData.js",
-			"images/head1.png",
-			"images/lpc.jpg",
-			"images/cj.jpg"
-		]
-	},
-	"htmls/followed.html": {
-		"refer": [
-			"htmls/chat.html",
-			"htmls/profile.html"
-		],
-		"resources": [
-			"images/head1.png",
-			"css/mui.min.css",
-			"js/wilddogData.js",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"images/cj.jpg",
-			"images/lpc.jpg",
-			"images/yyy.jpg",
-			"images/logo.png"
-		]
-	},
-	"htmls/profile.html": {
-		"resources": [
-			"css/mui.min.css",
-			"css/icomoon.css",
-			"images/head1.png",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"fonts/icomoon.ttf",
-			"images/head.jpg",
-			"js/wilddogData.js",
-			"images/lpc.jpg",
-			"images/cj.jpg",
-			"images/yyy.jpg",
-			"images/logo.png",
-			"css/post.css",
-			"css/mui-icons-extra.css",
-			"fonts/mui-icons-extra.ttf",
-			"js/common.js",
-			"js/post.js"
-		],
-		"refer": [
-			"htmls/edit_account.html",
-			"htmls/chat.html",
-			"htmls/followed.html",
-			"htmls/follow.html",
-			"htmls/post_comment.html"
-		]
-	},
-	"htmls/post_comment.html": {
-		"resources": [
-			"images/head2.jpg",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/wilddogData.js",
-			"js/wilddog.js",
-			"images/cj.jpg",
-			"images/head1.png",
-			"images/lpc.jpg"
-		]
-	},
-	"htmls/compose.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"images/angry.png",
-			"images/relaxed.png",
-			"images/confused.png"
-		]
-	}
+  "index.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "htmls/one.html",
+      "htmls/two.html",
+      "js/mui.js",
+      "js/wilddog.js",
+      "js/wilddogData.js"
+    ],
+    "refer": [
+      "htmls/three.html",
+      "htmls/four.html",
+      "htmls/one.html",
+      "htmls/two.html",
+      "htmls/login_reg.html",
+      "htmls/register.html",
+      "htmls/index.html",
+      "htmls/main.html"
+    ]
+  },
+  "htmls/four.html": {
+    "resources": [
+      "images/user.png",
+      "htmls/login_reg.html",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mui.view.js",
+      "images/head1.png",
+      "js/wilddogData.js",
+      "images/lpc.jpg",
+      "images/logo.png"
+    ],
+    "refer": [
+      "htmls/login_reg.html",
+      "htmls/edit_account.html",
+      "htmls/follow.html",
+      "htmls/followed.html",
+      "htmls/profile.html"
+    ]
+  },
+  "login.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ]
+  },
+  "htmls/two.html": {
+    "refer": [
+      "login.html",
+      "htmls/login.html",
+      "htmls/register.html"
+    ],
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf"
+    ]
+  },
+  "htmls/login.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ]
+  },
+  "htmls/register.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/wilddogData.js"
+    ]
+  },
+  "htmls/login_reg.html": {
+    "refer": [
+      "htmls/login.html",
+      "htmls/register.html",
+      "htmls/four.html",
+      "htmls/main.html"
+    ],
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "htmls/four.html",
+      "js/wilddogData.js",
+      "fonts/mui.ttf"
+    ]
+  },
+  "htmls/one.html": {
+    "resources": [
+      "fonts/icomoon.ttf",
+      "css/icomoon.css",
+      "images/head.jpg",
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "images/head1.png",
+      "fonts/mui-icons-extra.ttf",
+      "css/mui-icons-extra.css",
+      "htmls/post_comment.html",
+      "css/post.css"
+    ],
+    "refer": [
+      "htmls/post_comment.html",
+      "htmls/compose.html"
+    ]
+  },
+  "htmls/three.html": {
+    "resources": [
+      "images/head1.png",
+      "images/head2.jpg",
+      "images/head.jpg",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "images/lpc.jpg",
+      "js/wilddogData.js",
+      "images/cj.jpg",
+      "images/yyy.jpg"
+    ],
+    "refer": [
+      "htmls/chat.html"
+    ]
+  },
+  "htmls/index.html": {
+    "resources": [
+      "htmls/one.html",
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "htmls/three.html",
+      "htmls/four.html",
+      "htmls/one.html",
+      "htmls/two.html"
+    ]
+  },
+  "htmls/main.html": {
+    "resources": [
+      "htmls/one.html",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "htmls/three.html",
+      "fonts/mui-icons-extra.ttf",
+      "css/mui-icons-extra.css"
+    ],
+    "refer": [
+      "htmls/three.html",
+      "htmls/four.html",
+      "htmls/one.html",
+      "htmls/two.html"
+    ]
+  },
+  "htmls/edit_account.html": {
+    "resources": [
+      "css/mui.min.css",
+      "images/head1.png",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "js/wilddogData.js",
+      "images/logo.png",
+      "images/lpc.jpg"
+    ]
+  },
+  "htmls/follow.html": {
+    "resources": [
+      "css/mui.min.css",
+      "images/head1.png",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "images/head2.jpg",
+      "images/head.jpg",
+      "js/wilddogData.js",
+      "images/cj.jpg",
+      "images/lpc.jpg",
+      "images/yyy.jpg"
+    ],
+    "refer": [
+      "htmls/chat.html",
+      "htmls/profile.html"
+    ]
+  },
+  "htmls/chat.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "js/arttmpl.js",
+      "js/wilddogData.js",
+      "images/head1.png",
+      "images/lpc.jpg",
+      "images/cj.jpg"
+    ]
+  },
+  "htmls/followed.html": {
+    "refer": [
+      "htmls/chat.html",
+      "htmls/profile.html"
+    ],
+    "resources": [
+      "images/head1.png",
+      "css/mui.min.css",
+      "js/wilddogData.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "images/cj.jpg",
+      "images/lpc.jpg",
+      "images/yyy.jpg",
+      "images/logo.png"
+    ]
+  },
+  "htmls/profile.html": {
+    "resources": [
+      "css/mui.min.css",
+      "css/icomoon.css",
+      "images/head1.png",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "fonts/icomoon.ttf",
+      "images/head.jpg",
+      "js/wilddogData.js",
+      "images/lpc.jpg",
+      "images/cj.jpg",
+      "images/yyy.jpg",
+      "images/logo.png",
+      "css/post.css",
+      "css/mui-icons-extra.css",
+      "fonts/mui-icons-extra.ttf",
+      "js/common.js",
+      "js/post.js"
+    ],
+    "refer": [
+      "htmls/edit_account.html",
+      "htmls/chat.html",
+      "htmls/followed.html",
+      "htmls/follow.html",
+      "htmls/post_comment.html"
+    ]
+  },
+  "htmls/post_comment.html": {
+    "resources": [
+      "images/head2.jpg",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/wilddogData.js",
+      "js/wilddog.js",
+      "images/cj.jpg",
+      "images/head1.png",
+      "images/lpc.jpg"
+    ]
+  },
+  "htmls/compose.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/angry.png",
+      "images/relaxed.png",
+      "images/confused.png"
+    ]
+  }
 }

@@ -8,7 +8,6 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../css/mui-icons-extra.css" />
 		<link rel="stylesheet" href="../css/post.css" />
-		
 		<style type="text/css">
 			body{
 				color: #565656;
@@ -52,8 +51,6 @@
 				border-radius: 50%;
 				border: 5px solid white;
 			}
-			
-		
 			
 			.profile .description{
 				margin-top: 10px;
@@ -189,7 +186,10 @@
 		<script src="../js/wilddogData.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			mui.init();
+			window.postLoadedEvent = document.createEvent("CustomEvent");
+			window.postLoadedEvent.initCustomEvent("postLoaded", true, false, {});
 			mui.plusReady(function(){
+				//自定义加载事件
 				var self = plus.webview.currentWebview();
 				var account = self.account;
 				var local_account = plus.storage.getItem('account');
@@ -214,66 +214,60 @@
 					}
 					var accountInfo = data;
 					wilddogData.getData("/posts_board/" + account, function(data){
-						var keys = Object.keys(data);
 						if(data){
+							var keys = Object.keys(data);
 							document.getElementById('postsLength').innerHTML = keys.length;
-						}
-						var postHtml = "";
-						//the latest load firstly
-						for(var i = keys.length - 1;i >= 0;i--){
-							var modeArray = ["state-bad","state-normal","state-happy"];
-							postHtml = postHtml + '<div class="post-cell ' + modeArray[data[keys[i]].mode] + '"><div class="post-header"><img src="' + accountInfo.photoUrl + '"/>';
-							postHtml = postHtml + '<div class="post-info"><span>' + accountInfo.nickname + '</span><span>' + formatTime(keys[i]) + '</span></div></div>';
-							postHtml = postHtml + '<div class="post-content">' + data[keys[i]].content + '</div><div class="post-action">浏览<span>12</span>次';
-							postHtml = postHtml + '<div class="mui-pull-right action" data-username="' + account + '" data-postid="' + keys[i] + '">';
-							postHtml = postHtml + '<span class="mui-icon-extra mui-icon-extra-heart" style="font-size: 20px;padding-top: 4px;"></span><span class="mui-icon mui-icon-chatbubble"></span></div></div>';
-							postHtml = postHtml + '<div class="post-comment"><span class="mui-icon-extra mui-icon-extra-heart-filled" style="font-size: 14px;"></span><ul class="likeList">';
-							postHtml = postHtml + '</ul><ul class="conmentList"></ul></div></div>';
-							//load like
-							var likeKeys = Object.keys(data[keys[i]].likelist);
-							for(var j = 0;j < likeKeys.length;j++){
-								wilddogData.getData("/account_board/" + likeKeys[j], function(index, username){
-									return function(dataInfo){
-										mui('.likeList')[index].innerHTML = mui('.likeList')[index].innerHTML + '<li><a href="javascript:;" class="userLink" data-username="'+ username + '">' + dataInfo.nickname +'</a></li>';
-									}
-								}(keys.length-1-i, likeKeys[j]));
-							}	
-							//load comments
-							var commentKeys = Object.keys(data[keys[i]].comments);
-							for(var j = 0; j < commentKeys.length; j++) {
-								wilddogData.getData("/account_board/" + commentKeys[j], function(index, commentContent, username) {
-									return function(dataInfo) {
-										mui('.conmentList')[index].innerHTML = mui('.conmentList')[index].innerHTML + '<li><a href="javascript:;" class="userLink" data-username="'+ username + '">' + dataInfo.nickname + '</a>' + commentContent + '</li>';
-									}
-								}(keys.length-1-i, data[keys[i]].comments[commentKeys[j]], commentKeys[j]));
-							}
-						}
-						mui(".post-wrapper")[0].innerHTML = postHtml;
-						//like and comment action
-						mui('.action').each(function(){
-							this.addEventListener('tap', function(event){
-								//comment
-								if(event.target.className == "mui-icon mui-icon-chatbubble"){
-									mui.openWindow({
-										url: "../htmls/post_comment.html",
-										id: "comment_" + this.dataset.username,
-										extras: {
-											username: this.dataset.username,
-											postId: this.dataset.postid 
-										}
-									});
+							var postHtml = "";
+							//the latest load firstly
+							for(var i = keys.length - 1;i >= 0;i--){
+								var modeArray = ["state-bad","state-normal","state-happy"];
+								postHtml = postHtml + '<div class="post-cell ' + modeArray[data[keys[i]].mode] + '"><div class="post-header"><img src="' + accountInfo.photoUrl + '"/>';
+								postHtml = postHtml + '<div class="post-info"><span>' + accountInfo.nickname + '</span><span>' + formatTime(keys[i]) + '</span></div></div>';
+								postHtml = postHtml + '<div class="post-content">' + data[keys[i]].content + '</div><div class="post-action">浏览<span>12</span>次';
+								postHtml = postHtml + '<div class="mui-pull-right action" data-username="' + account + '" data-postid="' + keys[i] + '">';
+								if(data[keys[i]].likelist.hasOwnProperty(local_account)){
+									postHtml = postHtml + '<span class="mui-icon-extra mui-icon-extra-heart-filled" style="font-size: 20px;padding-top: 4px;"></span><span class="mui-icon mui-icon-chatbubble"></span></div></div>';
 								}else{
-									if(event.target.className == "mui-icon-extra mui-icon-extra-heart"){
-										event.target.className = "mui-icon-extra mui-icon-extra-heart-filled";
-									}else{
-										event.target.className = "mui-icon-extra mui-icon-extra-heart";
-									}
+									postHtml = postHtml + '<span class="mui-icon-extra mui-icon-extra-heart" style="font-size: 20px;padding-top: 4px;"></span><span class="mui-icon mui-icon-chatbubble"></span></div></div>';
 								}
-							},false);
-						});
+								postHtml = postHtml + '<div class="post-comment"><span class="mui-icon-extra mui-icon-extra-heart-filled" style="font-size: 14px;"></span><ul class="likeList">';
+								postHtml = postHtml + '</ul><ul class="conmentList"></ul></div></div>';
+								//load like
+								var likeKeys = Object.keys(data[keys[i]].likelist);
+								for(var j = 0;j < likeKeys.length;j++){
+									wilddogData.getData("/account_board/" + likeKeys[j], function(index, username){
+										return function(dataInfo){
+											mui('.likeList')[index].innerHTML = mui('.likeList')[index].innerHTML + '<li><a href="javascript:;" class="userLink" data-username="'+ username + '">' + dataInfo.nickname +'</a></li>';
+										}
+									}(keys.length-1-i, likeKeys[j]));
+								}
+								//load comments
+								var commentKeys = Object.keys(data[keys[i]].comments);
+								for(var j = 0; j < commentKeys.length; j++) {
+									wilddogData.getData("/account_board/" + commentKeys[j], function(index, commentContent, username) {
+										return function(dataInfo) {
+											mui('.conmentList')[index].innerHTML = mui('.conmentList')[index].innerHTML + '<li><a href="javascript:;" class="userLink" data-username="'+ username + '">' + dataInfo.nickname + '</a>' + commentContent + '</li>';
+										}
+									}(keys.length-1-i, data[keys[i]].comments[commentKeys[j]], commentKeys[j]));
+								}
+							}
+							mui(".post-wrapper")[0].innerHTML = postHtml;
+						}else{
+							mui(".post-wrapper")[0].innerHTML = '<div class="mui-text-center"><span></br></br></br>~~~~(>_<)~~~~，还没有动态！</span></div>';
+						}
+						document.dispatchEvent(window.postLoadedEvent);
 					});
 				});
 				
+				function loadLike(likeKeys, element){
+					for(var j = 0;j < likeKeys.length;j++){
+						wilddogData.getData("/account_board/" + likeKeys[j], function(element, username){
+							return function(dataInfo){
+								element.innerHTML = element.innerHTML + '<li><a href="javascript:;" class="userLink" data-username="'+ username + '">' + dataInfo.nickname +'</a></li>';
+							}
+						}(element, likeKeys[j]));
+					}	
+				}
 				
 				function formatTime(str){
 					var array = str.split("_");
