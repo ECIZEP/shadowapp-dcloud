@@ -5,9 +5,13 @@ hybrid app using javascipt
 
 ## Demo显示
 ![mark](http://ogzrgstml.bkt.clouddn.com/blog/20170302/203958628.png)
+
 ![mark](http://ogzrgstml.bkt.clouddn.com/blog/20170302/204019139.png)
+
 ![mark](http://ogzrgstml.bkt.clouddn.com/blog/20170302/204023300.png)
+
 ![mark](http://ogzrgstml.bkt.clouddn.com/blog/20170302/204027308.png)
+
 ![mark](http://ogzrgstml.bkt.clouddn.com/blog/20170302/204030074.png)
 
 
