@@ -1,6 +1,6 @@
 # shadowapp-dcloud
 hybrid app using javascipt
-## release文件夹中有Demo版本的APK包，已实现聊天和基本社交功能，持续更新中.....
+## 已实现聊天和基本社交功能，持续更新中.....
 >使用Dcloud 的MUI框架，野狗的云数据存储
 
 ## Demo显示
