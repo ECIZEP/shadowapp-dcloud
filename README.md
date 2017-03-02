@@ -13,8 +13,11 @@ hybrid app using javascipt
 3.
 ![mark](http://ogzrgstml.bkt.clouddn.com/blog/20170302/204023300.png)
 4.
+
 ![mark](http://ogzrgstml.bkt.clouddn.com/blog/20170302/204027308.png)
+
 5.
+
 ![mark](http://ogzrgstml.bkt.clouddn.com/blog/20170302/204030074.png)
 
 
